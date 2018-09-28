@@ -18,23 +18,26 @@ export class HomePage {
   searchFunction(q: string) {
     this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
       data => {
-        //this.results = data.items[0].volumeInfo.title;
-        this.results = data;
+        
+        var bookId = data.items[0].id
 
-        var titles:string = "";
+        this.http.get('https://www.googleapis.com/books/v1/volumes/' + bookId + '/associated' ).map(res => res.json()).subscribe(
+          data => {
 
-        for (var item in this.results.items) {
-          titles += this.results.items[item].volumeInfo.title + "\n";
-        }
+            var titles:string = "";
+            this.results = data;
 
-        alert(titles);
-      },
-      err => {
-        console.log("Error in searchFunction.");
-        alert("Error in searchFunction.");
+            for (var item in this.results.items) {
+              titles += this.results.items[item].volumeInfo.title + "\n";
+            }
+
+            alert(titles);
+
+            err => {
+              console.log("Error in searchFunction.");
+              alert("Error in searchFunction.");
+            }
+          })
       });
-
-
   }
-
 }
