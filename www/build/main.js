@@ -171,18 +171,19 @@ var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, http) {
         this.navCtrl = navCtrl;
         this.http = http;
+        this.books = [];
     }
     HomePage.prototype.searchFunction = function (q) {
         var _this = this;
+        this.books = [];
         this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
             var bookId = data.items[0].id;
             _this.http.get('https://www.googleapis.com/books/v1/volumes/' + bookId + '/associated').map(function (res) { return res.json(); }).subscribe(function (data) {
-                var titles = "";
                 _this.results = data;
                 for (var item in _this.results.items) {
-                    titles += _this.results.items[item].volumeInfo.title + "\n";
+                    _this.books.push(_this.results.items[item].volumeInfo);
                 }
-                alert(titles);
+                console.log(_this.books);
                 (function (err) {
                     console.log("Error in searchFunction.");
                     alert("Error in searchFunction.");
@@ -192,11 +193,12 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<!--\n<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n-->\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-item>\n    <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n  </ion-item>\n</ion-content>'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<!--\n<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n-->\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n  <ion-list>\n    <ion-item *ngFor="let book of books">\n      <img src={{book.imageLinks.smallThumbnail}} alt="{{book.title}}_thumbnail">\n      <h2>\n        {{ book.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
