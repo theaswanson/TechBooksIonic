@@ -9,28 +9,29 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
+  results:any;
+  books:any;
+
   constructor(public navCtrl: NavController, public http: Http) {
     this.books = [];
   }
 
-  results: any
-
   searchFunction(q: string) {
-    this.books = [];
+
     this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
       data => {
+        var bookId = data.items[0].id;
 
-        var bookId = data.items[0].id
-
-        this.http.get('https://www.googleapis.com/books/v1/volumes/' + bookId + '/associated' ).map(res => res.json()).subscribe(
+        this.http.get('https://www.googleapis.com/books/v1/volumes/' + bookId + '/associated').map(res => res.json()).subscribe(
           data => {
-
             this.results = data;
+            this.books = [];
+
             for (var item in this.results.items) {
               this.books.push(this.results.items[item].volumeInfo);
             }
 
-            console.log(this.books)
+            console.log(this.books);
 
             err => {
               console.log("Error in searchFunction.");
