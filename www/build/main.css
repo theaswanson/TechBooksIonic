@@ -4881,10 +4881,6 @@ textarea::-webkit-input-placeholder {
   padding-left: 2px;
 }
 
-textarea:-ms-input-placeholder {
-  padding-left: 2px;
-}
-
 textarea::-ms-input-placeholder {
   padding-left: 2px;
 }
@@ -25691,10 +25687,26 @@ ion-navbar.toolbar {
   background: #f9f9f9;
 }
 
+page-cards ion-content {
+  background: #ed822f;
+}
+
+page-cards img {
+  max-height: 250px;
+}
+
 page-home ion-content {
   background: #ed822f;
 }
 
 page-home img {
   max-height: 250px;
+}
+
+page-home .loading {
+  margin-top: 100px;
+}
+
+page-home .no-results {
+  font-family: 'Poppins', sans-serif;
 }
