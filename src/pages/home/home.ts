@@ -29,11 +29,11 @@ export class HomePage {
   searchFunction(q: string) {
     this.books = [];
     this.loading = true;
+    this.noResults = false;
 
     this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
       data => {
 
-        this.noResults = false;
         this.results = data;
 
         for (var item in this.results.items) {

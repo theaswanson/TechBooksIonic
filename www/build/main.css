@@ -25696,7 +25696,8 @@ page-cards img {
 }
 
 page-home ion-content {
-  background: #ed822f;
+  background: #222;
+  font-family: 'Poppins', sans-serif;
 }
 
 page-home img {
@@ -25705,8 +25706,4 @@ page-home img {
 
 page-home .loading {
   margin-top: 100px;
-}
-
-page-home .no-results {
-  font-family: 'Poppins', sans-serif;
 }

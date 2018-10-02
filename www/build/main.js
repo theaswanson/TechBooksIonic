@@ -42,8 +42,8 @@ var HomePage = /** @class */ (function () {
         var _this = this;
         this.books = [];
         this.loading = true;
+        this.noResults = false;
         this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
-            _this.noResults = false;
             _this.results = data;
             for (var item in _this.results.items) {
                 if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')) {
@@ -63,11 +63,12 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<!--\n<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n-->\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n  <ion-list>\n    <ion-item *ngFor="let book of books" (click)="openCards(book.id)">\n      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n      <h2>\n        {{ book.volumeInfo.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n  <ion-list>\n    <ion-item *ngFor="let book of books" (click)="openCards(book.id)">\n      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n      <h2>\n        {{ book.volumeInfo.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map

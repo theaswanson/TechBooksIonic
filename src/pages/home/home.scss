@@ -1,14 +1,12 @@
 page-home {
     ion-content {
-        background: color($colors, primary);
+        background: color($colors, dark);
+        font-family: 'Poppins', sans-serif;
     }
     img {
         max-height: 250px;
     }
     .loading {
-      margin-top: 100px;
-    }
-    .no-results {
-        font-family: 'Poppins', sans-serif;
+        margin-top: 100px;
     }
 }
