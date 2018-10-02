@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cards</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding text-center>
+  <img src="assets/imgs/techbooks.png" alt="TechBooks">
+
+  <ion-list>
+    <ion-item *ngFor="let book of books">
+      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
+      <h2>
+        {{ book.volumeInfo.title }}
+      </h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
