@@ -13,10 +13,14 @@ export class CardsPage {
   results:any;
   books:any;
   bookId:any;
+  noResults:any;
+  loading:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.books = [];
     this.bookId = navParams.get('bookId')
+    this.noResults = false;
+    this.loading = true;
   }
 
   ionViewDidLoad() {
@@ -27,10 +31,16 @@ export class CardsPage {
         this.books = [];
 
         for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')) {
+          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
             this.books.push(this.results.items[item]);
           }
         }
+
+        if (this.books.length == 0) {
+          this.noResults = true;
+        }
+
+        this.loading = false
 
         console.log(this.books);
 

@@ -37,7 +37,7 @@ export class HomePage {
         this.results = data;
 
         for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')) {
+          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
             this.books.push(this.results.items[item]);
           }
         }

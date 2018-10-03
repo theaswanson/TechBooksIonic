@@ -10,12 +10,23 @@
     <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>
     <img src="assets/imgs/no_data.svg" alt="No Results">
   </div>
-  <ion-list>
-    <ion-item *ngFor="let book of books" (click)="openCards(book.id)">
-      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
-      <h2>
-        {{ book.volumeInfo.title }}
-      </h2>
-    </ion-item>
-  </ion-list>
+    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">
+      <ion-row>
+        <ion-item>
+          <h3 style="text-align:center;">
+            <strong>{{ book.volumeInfo.title }}</strong>
+          </h3>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
+        </ion-col>
+        <ion-col>
+        <h2>
+          {{ book.volumeInfo.description.substring(0,100) }}...
+        </h2>
+        </ion-col>
+      </ion-row>
+    </ion-card>
 </ion-content>
