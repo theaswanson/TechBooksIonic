@@ -1,0 +1,40 @@
+
+<ion-content padding>
+    <ion-slides pager>
+  
+      <ion-slide>
+        <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+          <ion-icon ios="ios-analytics" md="md-analytics" color="primary"></ion-icon>
+        </div>
+  
+        <div>
+          <h2> Track your Routine </h2>
+          <p> Whether it's sets, reps, weight used, you can track it all with our intuitive interface. </p>
+        </div>
+      </ion-slide>     
+  
+      <ion-slide>
+          <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+            <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon>
+          </div>
+          
+          <div>
+            <h2> Set Personal Goals</h2>
+            <p> We're all in the gym for a reason: goals. Set goals for diet and fitness. </p>
+          </div>
+      </ion-slide> 
+  
+      <ion-slide>
+          <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+            <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+          </div>
+          
+          <div>
+            <h2> Chat with Others </h2>
+            <p> Inspire and help each other reach fitness and diet goals.</p>
+          </div>
+      </ion-slide>   
+      <button (click)="skip()" id="skip"> {{ skipMsg }} </button>
+    </ion-slides>
+  
+  </ion-content>
