@@ -46,7 +46,7 @@ var HomePage = /** @class */ (function () {
         this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.results = data;
             for (var item in _this.results.items) {
-                if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')) {
+                if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && _this.results.items[item].volumeInfo.hasOwnProperty('description')) {
                     _this.books.push(_this.results.items[item]);
                 }
             }
@@ -63,12 +63,11 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n  <ion-list>\n    <ion-item *ngFor="let book of books" (click)="openCards(book.id)">\n      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n      <h2>\n        {{ book.volumeInfo.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/'<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">\n      <ion-row>\n        <ion-item>\n          <h3 style="text-align:center;">\n            <strong>{{ book.volumeInfo.title }}</strong>\n          </h3>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n        </ion-col>\n        <ion-col>\n        <h2>\n          {{ book.volumeInfo.description.substring(0,100) }}...\n        </h2>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -105,6 +104,8 @@ var CardsPage = /** @class */ (function () {
         this.http = http;
         this.books = [];
         this.bookId = navParams.get('bookId');
+        this.noResults = false;
+        this.loading = true;
     }
     CardsPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -112,10 +113,14 @@ var CardsPage = /** @class */ (function () {
             _this.results = data;
             _this.books = [];
             for (var item in _this.results.items) {
-                if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')) {
+                if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && _this.results.items[item].volumeInfo.hasOwnProperty('description')) {
                     _this.books.push(_this.results.items[item]);
                 }
             }
+            if (_this.books.length == 0) {
+                _this.noResults = true;
+            }
+            _this.loading = false;
             console.log(_this.books);
             (function (err) {
                 console.log("Error in searchFunction.");
@@ -125,7 +130,7 @@ var CardsPage = /** @class */ (function () {
     };
     CardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cards',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/cards/cards.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>cards</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-list>\n    <ion-item *ngFor="let book of books">\n      <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n      <h2>\n        {{ book.volumeInfo.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/cards/cards.html"*/,
+            selector: 'page-cards',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/cards/cards.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>cards</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n    <ion-card *ngFor="let book of books">\n      <ion-row>\n        <ion-item>\n          <h3 style="text-align:center;">\n            <strong>{{ book.volumeInfo.title }}</strong>\n          </h3>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n        </ion-col>\n        <ion-col>\n        <h2>\n          {{ book.volumeInfo.description.substring(0,100) }}...\n        </h2>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/cards/cards.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
     ], CardsPage);
@@ -202,7 +207,7 @@ var AboutPage = /** @class */ (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/koberaypole/KobeProj/TechBooksIonic/src/pages/about/about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], AboutPage);
