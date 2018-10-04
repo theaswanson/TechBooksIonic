@@ -25687,10 +25687,23 @@ ion-navbar.toolbar {
   background: #f9f9f9;
 }
 
-page-home ion-content {
+page-cards ion-content {
   background: #ed822f;
+}
+
+page-cards img {
+  max-height: 250px;
+}
+
+page-home ion-content {
+  background: #222;
+  font-family: 'Poppins', sans-serif;
 }
 
 page-home img {
   max-height: 250px;
+}
+
+page-home .loading {
+  margin-top: 100px;
 }
