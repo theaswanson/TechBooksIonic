@@ -1,6 +1,6 @@
 
-<ion-content padding>
-  <ion-slides pager>
+<ion-content >
+  <ion-slides pager (ionSlideDidChange)="slideChanged()">
   
     <ion-slide>
       <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
@@ -32,9 +32,12 @@
         <div>
           <h2> Chat with Others </h2>
           <p> Inspire and help each other reach fitness and diet goals.</p>
-        </div>
-    </ion-slide>   
-    <button (click)="skip()" id="skip"> {{ skipMsg }} </button>
-  </ion-slides>
 
+          
+        </div>
+        
+    </ion-slide>   
+    
+  </ion-slides>
+  <button (click)="skip()" id="skip"> {{ skipMsg }} </button>
   </ion-content>
