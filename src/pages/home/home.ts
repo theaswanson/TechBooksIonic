@@ -31,28 +31,34 @@ export class HomePage {
     this.loading = true;
     this.noResults = false;
 
-    this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
-      data => {
+    if (q.length == 0) {
+      this.noResults = true
+      this.loading = false
+    } else {
 
-        this.results = data;
+      this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
+        data => {
 
-        for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-            this.books.push(this.results.items[item]);
+          this.results = data;
+
+          for (var item in this.results.items) {
+            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+              this.books.push(this.results.items[item]);
+            }
           }
-        }
-        if (this.books.length == 0) {
-          this.noResults = true;
-        }
+          if (this.books.length == 0) {
+            this.noResults = true;
+          }
 
-        this.loading = false;
+          this.loading = false;
 
-        console.log(this.books);
+          console.log(this.books);
 
-        err => {
-          console.log("Error in searchFunction.");
-          alert("Error in searchFunction.");
-        }
-      });
+          err => {
+            console.log("Error in searchFunction.");
+            alert("Error in searchFunction.");
+          }
+        });
+    }
   }
 }
