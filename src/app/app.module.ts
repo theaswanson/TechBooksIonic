@@ -12,6 +12,7 @@ import { CardsPage } from '../pages/cards/cards';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
