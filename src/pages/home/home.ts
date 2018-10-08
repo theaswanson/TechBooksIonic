@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { CardsPage } from '../cards/cards';
+import { Keyboard } from '@ionic-native/keyboard';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -15,7 +16,7 @@ export class HomePage {
   noResults:any;
   loading:any;
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard) {
     this.books = [];
     this.noResults = false;
     this.loading = false;
@@ -26,7 +27,18 @@ export class HomePage {
       bookId: id,
     })
   }
+
+  openKeyboard() {
+    this.keyboard.show();
+  }
+
+  closeKeyboard() {
+    this.keyboard.hide();
+  }
+
   searchFunction(q: string) {
+    this.closeKeyboard();
+
     this.books = [];
     this.loading = true;
     this.noResults = false;

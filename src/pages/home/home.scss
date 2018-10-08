@@ -3,9 +3,17 @@ page-home {
         background: color($colors, dark);
         font-family: 'Poppins', sans-serif;
     }
+    #input {
+        width: 100%;
+        font-size: 20px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 10px;
+        border: 1px solid color($colors, primary);
+        margin-bottom: 10px;
+    }
     img {
         max-height: 250px;
-
     }
     .loading {
         margin-top: 100px;
