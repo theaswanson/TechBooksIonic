@@ -31,7 +31,7 @@ export class HomePage {
     this.loading = true;
     this.noResults = false;
 
-    if (q.length == 0) {
+    if (q.replace(/\s/g, '').length == 0) {
       this.noResults = true
       this.loading = false
     } else {
