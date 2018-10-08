@@ -48,11 +48,8 @@ var HomePage = /** @class */ (function () {
         this.keyboard.hide();
     };
     HomePage.prototype.searchFunction = function (q) {
+        //this.closeKeyboard();
         var _this = this;
-        if (this.loading == true) {
-            alert('Cant search when already searching yo');
-            return;
-        }
         this.books = [];
         this.loading = true;
         this.noResults = false;
@@ -71,13 +68,12 @@ var HomePage = /** @class */ (function () {
             (function (err) {
                 console.log("Error in searchFunction.");
                 alert("Error in searchFunction.");
-                _this.loading = false;
             });
         });
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\home\home.html"*/'<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n    <form action="closeKeyboard()">\n\n      <!--\n\n      <ion-searchbar #q [(ngModel)]="myInput" name="yaYEET" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n\n      -->\n\n      <ion-input text-center id="input" #q (keyup.enter)="closeKeyboard(); searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>\n\n    </form>\n\n\n\n  <div *ngIf="loading == true">\n\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n\n  </div>\n\n  <div *ngIf="noResults == true">\n\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n\n  </div>\n\n    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">\n\n      <ion-row>\n\n        <ion-item>\n\n          <h3 style="text-align:center;">\n\n            <strong>{{ book.volumeInfo.title }}</strong>\n\n          </h3>\n\n        </ion-item>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n\n        </ion-col>\n\n        <ion-col>\n\n        <h2>\n\n          {{ book.volumeInfo.description.substring(0,100) }}...\n\n        </h2>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\home\home.html"*/'<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n    <form action=".">\n\n      <ion-input text-center id="input" #q (keyup.enter)="searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>\n\n    </form>\n\n\n\n  <div *ngIf="loading == true">\n\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n\n  </div>\n\n  <div *ngIf="noResults == true">\n\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n\n  </div>\n\n    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">\n\n      <ion-row>\n\n        <ion-item>\n\n          <h3 style="text-align:center;">\n\n            <strong>{{ book.volumeInfo.title }}</strong>\n\n          </h3>\n\n        </ion-item>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n\n        </ion-col>\n\n        <ion-col>\n\n        <h2>\n\n          {{ book.volumeInfo.description.substring(0,100) }}...\n\n        </h2>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]])
     ], HomePage);

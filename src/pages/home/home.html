@@ -1,7 +1,7 @@
 <ion-content padding text-center>
   <img src="assets/imgs/techbooks.png" alt="TechBooks">
-    <form action="closeKeyboard()">
-      <ion-input text-center id="input" #q (keyup.enter)="closeKeyboard(); searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>
+    <form action=".">
+      <ion-input text-center id="input" #q (keyup.enter)="searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>
     </form>
 
   <div *ngIf="loading == true">

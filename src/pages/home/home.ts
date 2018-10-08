@@ -37,6 +37,8 @@ export class HomePage {
   }
 
   searchFunction(q: string) {
+    this.closeKeyboard();
+
     this.books = [];
     this.loading = true;
     this.noResults = false;
