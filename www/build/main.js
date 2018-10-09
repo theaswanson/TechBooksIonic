@@ -48,32 +48,38 @@ var HomePage = /** @class */ (function () {
         this.keyboard.hide();
     };
     HomePage.prototype.searchFunction = function (q) {
-        //this.closeKeyboard();
         var _this = this;
+        this.closeKeyboard();
         this.books = [];
         this.loading = true;
         this.noResults = false;
-        this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
-            _this.results = data;
-            for (var item in _this.results.items) {
-                if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && _this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-                    _this.books.push(_this.results.items[item]);
+        if (q.replace(/\s/g, '').length == 0) {
+            this.noResults = true;
+            this.loading = false;
+        }
+        else {
+            this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
+                _this.results = data;
+                for (var item in _this.results.items) {
+                    if (_this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && _this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+                        _this.books.push(_this.results.items[item]);
+                    }
                 }
-            }
-            if (_this.books.length == 0) {
-                _this.noResults = true;
-            }
-            _this.loading = false;
-            console.log(_this.books);
-            (function (err) {
-                console.log("Error in searchFunction.");
-                alert("Error in searchFunction.");
+                if (_this.books.length == 0) {
+                    _this.noResults = true;
+                }
+                _this.loading = false;
+                console.log(_this.books);
+                (function (err) {
+                    console.log("Error in searchFunction.");
+                    alert("Error in searchFunction.");
+                });
             });
-        });
+        }
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\home\home.html"*/'<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n    <form action=".">\n\n      <ion-input text-center id="input" #q (keyup.enter)="searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>\n\n    </form>\n\n\n\n  <div *ngIf="loading == true">\n\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n\n  </div>\n\n  <div *ngIf="noResults == true">\n\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n\n  </div>\n\n    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">\n\n      <ion-row>\n\n        <ion-item>\n\n          <h3 style="text-align:center;">\n\n            <strong>{{ book.volumeInfo.title }}</strong>\n\n          </h3>\n\n        </ion-item>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n\n        </ion-col>\n\n        <ion-col>\n\n        <h2>\n\n          {{ book.volumeInfo.description.substring(0,100) }}...\n\n        </h2>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/home/home.html"*/'<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n    <form action=".">\n      <ion-input text-center id="input" #q (keyup.enter)="searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>\n    </form>\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">\n      <ion-row>\n        <ion-item>\n          <h3>\n            <strong>{{ book.volumeInfo.title }}</strong>\n          </h3>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n        </ion-col>\n        <ion-col>\n        <h2>\n          {{ book.volumeInfo.description.substring(0,100) }}...\n        </h2>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]])
     ], HomePage);
@@ -140,7 +146,7 @@ var CardsPage = /** @class */ (function () {
     };
     CardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cards',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\cards\cards.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>cards</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n\n\n  <div *ngIf="loading == true">\n\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n\n  </div>\n\n  <div *ngIf="noResults == true">\n\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n\n  </div>\n\n    <ion-card *ngFor="let book of books">\n\n      <ion-row>\n\n        <ion-item>\n\n          <h3 style="text-align:center;">\n\n            <strong>{{ book.volumeInfo.title }}</strong>\n\n          </h3>\n\n        </ion-item>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n\n        </ion-col>\n\n        <ion-col>\n\n        <h2>\n\n          {{ book.volumeInfo.description.substring(0,100) }}...\n\n        </h2>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\cards\cards.html"*/,
+            selector: 'page-cards',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/cards/cards.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>cards</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding text-center>\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <div *ngIf="loading == true">\n    <img class="loading" src="assets/imgs/puff.svg" alt="loading">\n  </div>\n  <div *ngIf="noResults == true">\n    <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>\n    <img src="assets/imgs/no_data.svg" alt="No Results">\n  </div>\n    <ion-card *ngFor="let book of books">\n      <ion-row>\n        <ion-item>\n          <h3>\n            <strong>{{ book.volumeInfo.title }}</strong>\n          </h3>\n        </ion-item>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">\n        </ion-col>\n        <ion-col>\n        <h2>\n          {{ book.volumeInfo.description.substring(0,100) }}...\n        </h2>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/cards/cards.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
     ], CardsPage);
@@ -217,7 +223,7 @@ var AboutPage = /** @class */ (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      About\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\about\about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/about/about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], AboutPage);
@@ -252,7 +258,7 @@ var ContactPage = /** @class */ (function () {
     }
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\contact\contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\contact\contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/contact/contact.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], ContactPage);
@@ -395,7 +401,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\adams\myApp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\Users\adams\myApp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -435,7 +441,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\adams\myApp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\adams\myApp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);

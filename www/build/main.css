@@ -25687,17 +25687,29 @@ ion-navbar.toolbar {
   background: #f9f9f9;
 }
 
-page-cards ion-content {
-  background: #ed822f;
-}
-
 page-cards img {
   max-height: 250px;
 }
 
-page-home ion-content {
-  background: #222;
-  font-family: 'Poppins', sans-serif;
+page-cards ion-content {
+  background: #ed822f;
+}
+
+page-cards ion-row ion-col img {
+  margin: auto;
+  width: 100px;
+}
+
+page-cards ion-card ion-row ion-item h3 {
+  text-align: center;
+}
+
+page-home img {
+  max-height: 250px;
+}
+
+page-home h2 {
+  margin: 3px;
 }
 
 page-home #input {
@@ -25708,14 +25720,24 @@ page-home #input {
   margin-bottom: 10px;
 }
 
-page-home img {
-  max-height: 250px;
-}
-
 page-home .loading {
   margin-top: 100px;
 }
 
-page-home h2 {
-  margin: 3px;
+page-home div h3 {
+  margin-top: 10px;
+}
+
+page-home ion-content {
+  background: #222;
+  font-family: 'Poppins', sans-serif;
+}
+
+page-home ion-row ion-col img {
+  margin: auto;
+  width: 100px;
+}
+
+page-home ion-card ion-row ion-item h3 {
+  text-align: center;
 }
