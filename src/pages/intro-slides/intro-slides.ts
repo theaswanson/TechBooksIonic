@@ -30,6 +30,8 @@ export class IntroSlidesPage {
   slideChanged() {
     if (this.slides.isEnd())
       this.skipMsg = "Alright, I got it";
+    else
+      this.skipMsg = "Skip";
   }
 
 }

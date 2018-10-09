@@ -38,6 +38,8 @@ var IntroSlidesPage = /** @class */ (function () {
     IntroSlidesPage.prototype.slideChanged = function () {
         if (this.slides.isEnd())
             this.skipMsg = "Alright, I got it";
+        else
+            this.skipMsg = "Skip";
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Slides */]),
