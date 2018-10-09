@@ -19,12 +19,12 @@ export class IntroSlidesPage {
   @ViewChild(Slides) slides: Slides;
   skipMsg: string = "Skip";
 
-  constructor(public navCtrl: NavController) {
+  constructor(public nav: NavController) {
 
   }
 
   skip() {
-    this.navCtrl.push(HomePage);
+    this.nav.setRoot(HomePage);
   }
 
   slideChanged() {
