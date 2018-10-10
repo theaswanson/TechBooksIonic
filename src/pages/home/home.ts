@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { IntroSlidesPage } from '../intro-slides/intro-slides';
@@ -11,12 +11,19 @@ import 'rxjs/add/operator/map';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  @ViewChild(Storage) storage: Storage;
   results:any;
   books:any;
 
   constructor(public navCtrl: NavController, public http: Http) {
     this.books = [];
+  }
+  getStorageValue(){
+    this.storage.get('test').then((val)=> {
+      console.log(val);
+    });
+    
+    
   }
 
   searchFunction(q: string) {

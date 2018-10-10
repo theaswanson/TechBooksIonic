@@ -7,6 +7,7 @@
 -->
 
 <ion-content padding text-center>
+
   <img src="assets/imgs/techbooks.png" alt="TechBooks">
 
   <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>
@@ -18,4 +19,6 @@
       </h2>
     </ion-item>
   </ion-list>
+
+  <button (click)="getStorageValue()" > check </button>
 </ion-content>

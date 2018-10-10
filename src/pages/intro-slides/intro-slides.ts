@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import { Slides } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the IntroSlidesPage page.
@@ -17,6 +18,7 @@ import { Slides } from 'ionic-angular';
 })
 export class IntroSlidesPage {
   @ViewChild(Slides) slides: Slides;
+  @ViewChild(Storage) storage: Storage;
   skipMsg: string = "Skip";
 
   constructor(public nav: NavController) {
@@ -33,5 +35,7 @@ export class IntroSlidesPage {
     else
       this.skipMsg = "Skip";
   }
+
+  
 
 }

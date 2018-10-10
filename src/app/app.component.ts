@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
   rootPage:any = HomePage;
+  newUser:boolean = true;
   @ViewChild('content') nav: NavController;
 
   constructor( private storage: Storage, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
