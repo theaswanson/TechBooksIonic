@@ -20,14 +20,14 @@
     <ion-card *ngFor="let book of books">
       <ion-row>
         <ion-item>
-          <h3 style="text-align:center;">
+          <h3>
             <strong>{{ book.volumeInfo.title }}</strong>
           </h3>
         </ion-item>
       </ion-row>
       <ion-row>
         <ion-col>
-          <img style="margin:auto;width:100px;" src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
+          <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
         </ion-col>
         <ion-col>
         <h2>

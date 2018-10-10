@@ -1,8 +1,11 @@
 page-home {
-    ion-content {
-        background: color($colors, dark);
-        font-family: 'Poppins', sans-serif;
+
+    img {
+        max-height: 250px;
     }
+    h2 {
+        margin: 3px;
+    } 
     #input {
         width: 100%;
         font-size: 20px;
@@ -12,13 +15,26 @@ page-home {
         border: 1px solid color($colors, primary);
         margin-bottom: 10px;
     }
-    img {
-        max-height: 250px;
-    }
+   
     .loading {
         margin-top: 100px;
     }
-    h2 {
-        margin: 3px;
+
+    div h3 {
+        margin-top: 10px;
     }
+    ion-content {
+        background: color($colors, dark);
+        font-family: 'Poppins', sans-serif;
+    }    
+
+    ion-row ion-col img {
+        margin: auto;
+        width: 100px;
+    }    
+
+    ion-card ion-row ion-item h3{
+        text-align: center;
+    }
+
 }

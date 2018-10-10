@@ -1,8 +1,16 @@
 page-cards {
+
+  img {
+      max-height: 250px;
+  }
   ion-content {
       background: color($colors, primary);
   }
-  img {
-      max-height: 250px;
+  ion-row ion-col img{
+      margin: auto;
+      width: 100px;
+  }
+  ion-card ion-row ion-item h3{
+      text-align: center;
   }
 }
