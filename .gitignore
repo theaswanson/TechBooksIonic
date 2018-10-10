@@ -23,7 +23,7 @@ dist/
 node_modules/
 tmp/
 temp/
-www/build/
+www/
 platforms/
 plugins/
 plugins/android.json
