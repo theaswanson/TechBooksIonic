@@ -1,11 +1,13 @@
 <ion-content padding text-center>
-  <img src="assets/imgs/techbooks.png" alt="TechBooks">
+  <img id="logo" src="assets/imgs/techbooks.png" alt="TechBooks">
     <form action=".">
-      <ion-input text-center id="input" #q (keyup.enter)="searchFunction(q.value)" autocorrect="on" type="search" clearInput></ion-input>
+      <ion-item style="padding-left: 0">
+          <ion-input id="input" #q (keyup.enter)="searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
+      </ion-item>
     </form>
 
   <div *ngIf="loading == true">
-    <img class="loading" src="assets/imgs/puff.svg" alt="loading">
+    <img class="loading" src="assets/imgs/loading.svg" alt="">
   </div>
   <div *ngIf="noResults == true">
     <h3 class="no-results">Sorry! No results for this search.</h3>
