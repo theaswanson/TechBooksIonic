@@ -1,7 +1,7 @@
 <ion-content padding text-center>
   <img id="logo" src="assets/imgs/techbooks.png" alt="TechBooks">
     <form action=".">
-      <ion-item style="padding-left: 0">
+      <ion-item id="input-item">
           <ion-input id="input" #q (keyup.enter)="searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
       </ion-item>
     </form>

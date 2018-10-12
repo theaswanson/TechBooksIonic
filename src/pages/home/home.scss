@@ -1,29 +1,4 @@
 page-home {
-
-    #logo {
-        height: 250px;
-        max-height: 50vw;
-    }
-    h2 {
-        margin: 3px;
-    } 
-    #input {
-        width: 100%;
-        font-size: 25px;
-        padding-left: 35px;
-    }
-   
-    .loading {
-        margin-top: 100px;
-    }
-
-    .text-input {
-        text-align: center;
-      }
-
-    div h3 {
-        margin-top: 10px;
-    }
     ion-content {
         background: color($colors, dark);
         font-family: 'Poppins', sans-serif;
@@ -38,4 +13,34 @@ page-home {
         text-align: center;
     }
 
+    #logo {
+        height: 250px;
+        max-height: 50vw;
+    }
+
+    #input-item {
+        padding-left: 0;
+    }
+
+    #input {
+        width: 100%;
+        font-size: 25px;
+        padding-left: 35px;
+    }
+
+    .loading {
+        margin-top: 100px;
+    }
+
+    .text-input {
+        text-align: center;
+    }
+
+    h2 {
+        margin: 3px;
+    }
+    
+    div h3 {
+        margin-top: 10px;
+    }
 }
