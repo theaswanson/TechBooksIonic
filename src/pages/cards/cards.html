@@ -17,7 +17,7 @@
   </div>
 
   <div class="card-container" *ngIf="loading == false">
-    <sc-card class="sc-card" padding *ngFor="let book of books"
+    <sc-card class="sc-card" on-tap="OpenCardPage(book)" padding *ngFor="let book of books"
                      [orientation]="cardDirection"
                      [tinder-card]="cardOverlay"
                      [callDestroy]="book.destroyEvent"

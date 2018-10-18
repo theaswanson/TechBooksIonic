@@ -58,12 +58,14 @@ export class CardsPage {
       })
   }
 
+  OpenCardPage(book) {
+    console.log("You clicked on " + book.volumeInfo.title)
+  }
+
   destroyEvent(book) {
-    console.log(book)
   }
 
   likeEvent(book) {
-    console.log(book)
   }
 
   onCardInteract(event) {
