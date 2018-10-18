@@ -8,8 +8,6 @@
 
 
 <ion-content padding text-center>
-  <img src="assets/imgs/techbooks.png" alt="TechBooks">
-
   <div *ngIf="loading == true">
     <img class="loading" src="assets/imgs/loading.svg" alt="loading">
   </div>
@@ -17,7 +15,15 @@
     <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>
     <img src="assets/imgs/no_data.svg" alt="No Results">
   </div>
-    <ion-card *ngFor="let book of books">
+
+  <div class="card-container" *ngIf="loading == false">
+    <sc-card class="sc-card" padding *ngFor="let book of books"
+                     [orientation]="cardDirection"
+                     [tinder-card]="cardOverlay"
+                     [callDestroy]="book.destroyEvent"
+                     [callLike]="book.likeEvent"
+                     (onLike)="onCardInteract($event)">
+
       <ion-row>
         <ion-item>
           <h3>
@@ -35,6 +41,6 @@
         </h2>
         </ion-col>
       </ion-row>
-    </ion-card>
-
+    </sc-card>
+  </div>
 </ion-content>

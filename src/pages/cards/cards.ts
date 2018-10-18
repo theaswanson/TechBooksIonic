@@ -15,6 +15,15 @@ export class CardsPage {
   bookId:any;
   noResults:any;
   loading:any;
+  cardDirection = "xy";
+  cardOverlay: any = {
+    like: {
+        backgroundColor: '#28e93b',
+    },
+    dislike: {
+        backgroundColor: '#e92828'
+    }
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.books = [];
@@ -42,12 +51,22 @@ export class CardsPage {
 
         this.loading = false
 
-        console.log(this.books);
-
         err => {
           console.log("Error in searchFunction.");
           alert("Error in searchFunction.");
         }
       })
+  }
+
+  destroyEvent(book) {
+    console.log(book)
+  }
+
+  likeEvent(book) {
+    console.log(book)
+  }
+
+  onCardInteract(event) {
+    console.log(event);
   }
 }
