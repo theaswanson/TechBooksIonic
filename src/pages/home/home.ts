@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { CardsPage } from '../cards/cards';
 import { Keyboard } from '@ionic-native/keyboard';
 import 'rxjs/add/operator/map';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'page-home',
@@ -26,6 +27,15 @@ export class HomePage {
     this.navCtrl.push(CardsPage, {
       bookId: id,
     })
+  }
+
+  alert() {
+    $('#logo').animate({
+      height: '255px',
+    }, 100)
+    $('#logo').animate({
+      height: '250px',
+    }, 100)
   }
 
   openKeyboard() {

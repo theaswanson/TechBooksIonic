@@ -20,9 +20,7 @@
     <sc-card class="sc-card" on-tap="OpenCardPage(book)" padding *ngFor="let book of books"
                      [orientation]="cardDirection"
                      [tinder-card]="cardOverlay"
-                     [callDestroy]="book.destroyEvent"
-                     [callLike]="book.likeEvent"
-                     (onLike)="onCardInteract($event)">
+                     (onLike)="onCardInteract($event, book)">
 
       <ion-row>
         <ion-item>
