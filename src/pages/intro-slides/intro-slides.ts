@@ -1,3 +1,4 @@
+import { MyApp } from './../../app/app.component';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HomePage} from '../home/home';
@@ -18,11 +19,17 @@ import { Storage } from '@ionic/storage';
 })
 export class IntroSlidesPage {
   @ViewChild(Slides) slides: Slides;
-  @ViewChild(Storage) storage: Storage;
   skipMsg: string = "Skip";
 
-  constructor(public nav: NavController) {
 
+  constructor(public nav: NavController, private storage: Storage) {
+
+  }
+
+  test(){
+    this.storage.get('value').then((val) =>{
+      console.log('This is what I got Captiain ', val);
+    });
   }
 
   skip() {

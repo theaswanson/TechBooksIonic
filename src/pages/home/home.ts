@@ -18,13 +18,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: Http) {
     this.books = [];
   }
-  getStorageValue(){
-    this.storage.get('test').then((val)=> {
-      console.log(val);
-    });
+
     
-    
-  }
 
   searchFunction(q: string) {
 

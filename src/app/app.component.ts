@@ -13,21 +13,24 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
-  newUser:boolean = true;
   @ViewChild('content') nav: NavController;
+  rootPage:any;
+  newUser:boolean;
 
-  constructor( private storage: Storage, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor( public storage: Storage, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      if(!storage.get('newUser')){
-        this.rootPage= HomePage;
-       }
-       else{
-         this.rootPage= IntroSlidesPage;
-         storage.set('newUser',false)
-       }
+      storage.get('newUser').then((condition) =>{ 
+        if(condition != false){
+          this.rootPage=HomePage;
+        }
+        else{
+          this.rootPage=IntroSlidesPage;
+          storage.set('newUser',true); 
+        }
+      });
+
         statusBar.styleDefault();
       
 

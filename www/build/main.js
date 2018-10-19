@@ -30,10 +30,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var IntroSlidesPage = /** @class */ (function () {
-    function IntroSlidesPage(nav) {
+    function IntroSlidesPage(nav, storage) {
         this.nav = nav;
+        this.storage = storage;
         this.skipMsg = "Skip";
     }
+    IntroSlidesPage.prototype.test = function () {
+        this.storage.get('value').then(function (val) {
+            console.log('This is what I got Captiain ', val);
+        });
+    };
     IntroSlidesPage.prototype.skip = function () {
         this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
     };
@@ -47,15 +53,11 @@ var IntroSlidesPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Slides */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Slides */])
     ], IntroSlidesPage.prototype, "slides", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */])
-    ], IntroSlidesPage.prototype, "storage", void 0);
     IntroSlidesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-intro-slides',template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/pages/intro-slides/intro-slides.html"*/'\n<ion-content >\n  <ion-slides pager (ionSlideDidChange)="slideChanged()">\n  \n    <ion-slide>\n      <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n        <ion-icon ios="ios-analytics" md="md-analytics" color="primary"></ion-icon>\n      </div>\n\n      <div>\n        \n        <h2 > Track your Routine </h2>\n      \n        <p> Whether it\'s sets, reps, weight used, you can track it all with our intuitive interface. </p>\n      </div>\n    </ion-slide>     \n\n    <ion-slide>\n        <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n          <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon>\n        </div>\n        \n        <div>\n          <h2> Set Personal Goals</h2>\n          <p> We\'re all in the gym for a reason: goals. Set goals for diet and fitness. </p>\n        </div>\n    </ion-slide> \n\n    <ion-slide>\n        <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n          <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>\n        </div>\n        \n        <div>\n          <h2> Chat with Others </h2>\n          <p> Inspire and help each other reach fitness and diet goals.</p>         \n        </div>\n        \n    </ion-slide>   \n    \n  </ion-slides>\n  <button (click)="skip()" id="skip"> {{ skipMsg }} </button>\n  \n\n  </ion-content>'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/pages/intro-slides/intro-slides.html"*/,
+            selector: 'page-intro-slides',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/intro-slides/intro-slides.html"*/'\n<ion-content >\n  <ion-slides pager (ionSlideDidChange)="slideChanged()">\n  \n    <ion-slide>\n      <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n        <ion-icon ios="ios-analytics" md="md-analytics" color="primary"></ion-icon>\n      </div>\n\n      <div>\n         \n        \n        <h2 > Track your Routine </h2>\n      \n        <p> Whether it\'s sets, reps, weight used, you can track it all with our intuitive interface. </p>\n      </div>\n    </ion-slide>     \n\n    <ion-slide>\n        <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n          <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon>\n        </div>\n        \n        <div>\n          <h2> Set Personal Goals</h2>\n          <p> We\'re all in the gym for a reason: goals. Set goals for diet and fitness. </p>\n        </div>\n    </ion-slide> \n\n    <ion-slide>\n        <div class="diag" style="background: url(\'assets/imgs/whitebg.svg\') no-repeat">\n          <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>\n        </div>\n        \n        <div>\n          <h2> Chat with Others </h2>\n          <p> Inspire and help each other reach fitness and diet goals.</p>         \n        </div>\n        \n    </ion-slide>   \n    \n  </ion-slides>\n\n  <div id ="wrapper">\n    <button (click)="skip()" id="skip"> {{ skipMsg }} </button>\n  </div>\n  \n\n  </ion-content>'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/intro-slides/intro-slides.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
     ], IntroSlidesPage);
     return IntroSlidesPage;
 }());
@@ -130,7 +132,7 @@ var AboutPage = /** @class */ (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/about/about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], AboutPage);
@@ -165,7 +167,7 @@ var ContactPage = /** @class */ (function () {
     }
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/pages/contact/contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/contact/contact.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], ContactPage);
@@ -305,18 +307,18 @@ var MyApp = /** @class */ (function () {
     function MyApp(storage, platform, statusBar, splashScreen) {
         var _this = this;
         this.storage = storage;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_0__pages_home_home__["a" /* HomePage */];
-        this.newUser = true;
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            if (!storage.get('newUser')) {
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_0__pages_home_home__["a" /* HomePage */];
-            }
-            else {
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_intro_slides_intro_slides__["a" /* IntroSlidesPage */];
-                storage.set('newUser', false);
-            }
+            storage.get('newUser').then(function (condition) {
+                if (condition != false) {
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_0__pages_home_home__["a" /* HomePage */];
+                }
+                else {
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_intro_slides_intro_slides__["a" /* IntroSlidesPage */];
+                    storage.set('newUser', true);
+                }
+            });
             statusBar.styleDefault();
             splashScreen.hide();
         });
@@ -326,7 +328,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* Platform */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -366,7 +368,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -406,11 +408,6 @@ var HomePage = /** @class */ (function () {
         this.http = http;
         this.books = [];
     }
-    HomePage.prototype.getStorageValue = function () {
-        this.storage.get('test').then(function (val) {
-            console.log(val);
-        });
-    };
     HomePage.prototype.searchFunction = function (q) {
         var _this = this;
         this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(function (res) { return res.json(); }).subscribe(function (data) {
@@ -435,7 +432,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "storage", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/khalid/Desktop/TechBooksIonic/src/pages/home/home.html"*/'<!--\n<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n-->\n\n<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n  <ion-list>\n    <ion-item *ngFor="let book of books">\n      <img src={{book.imageLinks.smallThumbnail}} alt="{{book.title}}_thumbnail">\n      <h2>\n        {{ book.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n\n  <button (click)="getStorageValue()" > check </button>\n</ion-content>\n'/*ion-inline-end:"/Users/khalid/Desktop/TechBooksIonic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/home/home.html"*/'<!--\n<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n-->\n\n<ion-content padding text-center>\n\n  <img src="assets/imgs/techbooks.png" alt="TechBooks">\n\n  <ion-searchbar #q [(ngModel)]="myInput" (keyup.enter)="searchFunction(q.value)" [showCancelButton]="shouldShowCancel" type="text" placeholder="Search here..."></ion-searchbar>\n  <ion-list>\n    <ion-item *ngFor="let book of books">\n      <img src={{book.imageLinks.smallThumbnail}} alt="{{book.title}}_thumbnail">\n      <h2>\n        {{ book.title }}\n      </h2>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/softwareengineering/Documents/Bart's Project/TechBooksIonic/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
     ], HomePage);
