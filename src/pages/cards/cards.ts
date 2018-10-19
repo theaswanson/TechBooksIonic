@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @IonicPage()
@@ -25,7 +26,7 @@ export class CardsPage {
     }
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.books = [];
     this.bookId = navParams.get('bookId')
     this.noResults = false;
@@ -59,16 +60,43 @@ export class CardsPage {
   }
 
   OpenCardPage(book) {
-    console.log("You clicked on " + book.volumeInfo.title)
+    console.log()
+    const toast = this.toastCtrl.create({
+      message: "You clicked on " + book.volumeInfo.title,
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
   }
 
   destroyEvent(book) {
+    console.log()
+    const toast = this.toastCtrl.create({
+      message: "you disliked " + book.volumeInfo.title,
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
   }
 
   likeEvent(book) {
+    console.log()
+    const toast = this.toastCtrl.create({
+      message: "you liked " + book.volumeInfo.title,
+      duration: 2000,
+    });
+
+    toast.present();
   }
 
-  onCardInteract(event) {
-    console.log(event);
+  onCardInteract(event, book) {
+    if (event.like == true) {
+      this.likeEvent(book)
+    }
+    else {
+      this.destroyEvent(book)
+    }
   }
 }

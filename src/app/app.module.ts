@@ -28,7 +28,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    SwipeCardsModule 
+    SwipeCardsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
