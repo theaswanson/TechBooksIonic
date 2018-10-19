@@ -48,7 +48,7 @@ export class HomePage {
       this.loading = false
     } else {
 
-      this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z ]/g, "")).map(res => res.json()).subscribe(
+      this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + q.replace(/[^a-zA-Z1-9 ]/g, "")).map(res => res.json()).subscribe(
         data => {
 
           this.results = data;
