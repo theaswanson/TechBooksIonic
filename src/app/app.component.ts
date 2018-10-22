@@ -23,10 +23,10 @@ export class MyApp {
 
       //Here's where I made all the changes
       storage.get('newUser').then((condition) =>{ 
-        if(condition != false){
-          this.rootPage=HomePage;
+        if (condition != false) {
+          this.rootPage= HomePage;
         }
-        else{
+        else {
           this.rootPage=IntroSlidesPage;
           storage.set('newUser',true); 
         }

@@ -26,12 +26,6 @@ export class IntroSlidesPage {
 
   }
 
-  test(){
-    this.storage.get('value').then((val) =>{
-      console.log('This is what I got Captiain ', val);
-    });
-  }
-
   skip() {
     this.nav.setRoot(HomePage);
   }
