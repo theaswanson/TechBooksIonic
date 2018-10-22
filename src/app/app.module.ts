@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { CardsPage } from '../pages/cards/cards';
 import { SettingsPage } from '../pages/settings/settings';
 import { LibraryPage } from '../pages/library/library';
+import { EasterEggPage } from '../pages/easter-egg/easter-egg';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +36,8 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
     GoogleLoginComponent,
     SettingsPage,
     LibraryPage,
-    CardsPage
+    CardsPage,
+    EasterEggPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
     LoginPage,
     SettingsPage,
     LibraryPage,
-    CardsPage
+    CardsPage,
+    EasterEggPage
   ],
   providers: [
     StatusBar,

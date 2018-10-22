@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { CardsPage } from '../cards/cards';
+import { EasterEggPage } from '../easter-egg/easter-egg';
 import { Keyboard } from '@ionic-native/keyboard';
 import 'rxjs/add/operator/map';
 
@@ -15,11 +16,13 @@ export class HomePage {
   books:any;
   noResults:any;
   loading:any;
+  logoTaps:number;
 
   constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard) {
     this.books = [];
     this.noResults = false;
     this.loading = false;
+    this.logoTaps = 0;
   }
 
   openCards(id: string) {
@@ -34,6 +37,17 @@ export class HomePage {
 
   closeKeyboard() {
     this.keyboard.hide();
+  }
+
+  logoTap(e)
+  {
+    this.logoTaps++;
+
+    if (this.logoTaps == 3)
+    {
+      this.logoTaps = 0;
+      this.navCtrl.push(EasterEggPage);
+    }
   }
 
   searchFunction(q: string) {
