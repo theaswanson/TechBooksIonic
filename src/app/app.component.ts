@@ -15,12 +15,13 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   @ViewChild('content') nav: NavController;
   rootPage:any;
+  //Assigned this key value
   newUser:boolean;
 
   constructor( public storage: Storage, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+
+      //Here's where I made all the changes
       storage.get('newUser').then((condition) =>{ 
         if(condition != false){
           this.rootPage=HomePage;
@@ -30,6 +31,7 @@ export class MyApp {
           storage.set('newUser',true); 
         }
       });
+      //End
 
         statusBar.styleDefault();
       
