@@ -13,7 +13,7 @@
     <h3 class="no-results">Sorry! No results for this search.</h3>
     <img src="assets/imgs/no_data.svg" alt="No Results">
   </div>
-    <ion-card *ngFor="let book of books" (click)="openCards(book.id)">
+    <ion-card class="resultCards" *ngFor="let book of books" (click)="openCards(book.id)">
       <ion-row>
         <ion-item>
           <h3>
