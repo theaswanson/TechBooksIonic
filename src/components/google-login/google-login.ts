@@ -47,7 +47,7 @@ export class GoogleLoginComponent {
       return await this.afAuth.auth.signInWithCredential(
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
       ).then(
-        () => this.navCtrl.push(TabsPage, {gPlusUser: gplusUser})
+        () => this.navCtrl.push(TabsPage)
       )
     } catch(err) {
       console.log(err)
@@ -58,16 +58,10 @@ export class GoogleLoginComponent {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credentials = await this.afAuth.auth.signInWithPopup(provider).then(
-        () => this.navCtrl.push(TabsPage, {credentials: credentials})
+        () => this.navCtrl.push(TabsPage)
       )
     } catch(err) {
       console.log(err)
     }
-  }
-
-  signOut(): Promise<void> {
-    return this.afAuth.auth.signOut().then(
-      () => this.navCtrl.setRoot(LoginPage)
-    )
   }
 }

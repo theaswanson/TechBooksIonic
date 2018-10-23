@@ -22,6 +22,5 @@ export class LibraryPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.afAuth.auth)
   }
 }
