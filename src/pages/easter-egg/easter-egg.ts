@@ -9,7 +9,12 @@ import 'rxjs/add/operator/map';
 })
 export class EasterEggPage {
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     
+  }
+
+  closeModal() {
+    this.navCtrl.pop();
+  
   }
 }
