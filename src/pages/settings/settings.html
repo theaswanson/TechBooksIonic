@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding text-center>
+<ion-content *ngIf="user" padding text-center>
   <h2>{{user.displayName}}</h2>
   <div class="avatar">
     <img src="{{user.photoURL}}" alt="userPhoto">
@@ -20,6 +20,9 @@
 
   <h3>
     Email: {{user.email}}
+  </h3>
+  <h3>
+    Id: {{user.providerData[0].uid}}
   </h3>
 
 </ion-content>

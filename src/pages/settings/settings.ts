@@ -31,7 +31,9 @@ export class SettingsPage {
 
   signOut(): Promise<void> {
     return this.afAuth.auth.signOut().then(
-      () => this.navCtrl.setRoot(LoginPage)
+      () => {
+        this.navCtrl.parent.parent.setRoot(LoginPage)
+      }
     )
   }
 }
