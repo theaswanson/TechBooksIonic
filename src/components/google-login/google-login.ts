@@ -9,6 +9,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs'
 import { LoginPage } from '../../pages/login/login'
+import { firebaseConfig } from '../../config'
 
 
 @Component({
@@ -40,7 +41,7 @@ export class GoogleLoginComponent {
   async nativeGoogleLogin(): Promise<any> {
     try {
       const gplusUser = await this.gplus.login({
-        'webClientId': '224259418627-1u6c8ndmdt8vlca12q1qns53q1afbpe4.apps.googleusercontent.com',
+        'webClientId': firebaseConfig.ice.webClientId,
         'offline': true,
         'scopes': 'profile email'
       })
