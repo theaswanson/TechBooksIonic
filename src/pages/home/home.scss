@@ -2,15 +2,19 @@ page-home {
     ion-content {
         background: color($colors, dark);
         font-family: 'Poppins', sans-serif;
-    }    
+    }
 
     ion-row ion-col img {
         margin: auto;
         width: 100px;
-    }    
+    }
 
     ion-card ion-row ion-item h3{
         text-align: center;
+    }
+
+    .resultCards {
+      padding: 10px;
     }
 
     #logo {
@@ -39,7 +43,7 @@ page-home {
     h2 {
         margin: 3px;
     }
-    
+
     div h3 {
         margin-top: 10px;
     }

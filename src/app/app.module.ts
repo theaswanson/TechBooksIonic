@@ -8,12 +8,21 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 import { CardsPage } from '../pages/cards/cards';
+import { SettingsPage } from '../pages/settings/settings';
+import { LibraryPage } from '../pages/library/library';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { Keyboard } from '@ionic-native/keyboard';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { GoogleLoginComponent } from  '../components/google-login/google-login';
+import { firebaseConfig } from '../config'
+
+import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in the next section
 
 @NgModule({
   declarations: [
@@ -22,12 +31,18 @@ import { Keyboard } from '@ionic-native/keyboard';
     ContactPage,
     HomePage,
     TabsPage,
+    LoginPage,
+    GoogleLoginComponent,
+    SettingsPage,
+    LibraryPage,
     CardsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    AngularFireAuthModule,
     SwipeCardsModule
   ],
   bootstrap: [IonicApp],
@@ -37,12 +52,17 @@ import { Keyboard } from '@ionic-native/keyboard';
     ContactPage,
     HomePage,
     TabsPage,
+    LoginPage,
+    SettingsPage,
+    LibraryPage,
     CardsPage
   ],
   providers: [
     StatusBar,
+    GooglePlus,
     SplashScreen,
     Keyboard,
+    AngularFireAuthModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

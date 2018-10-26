@@ -1,0 +1,15 @@
+page-settings {
+  ion-content {
+    background: color($colors, dark);
+    font-family: 'Poppins', sans-serif;
+  }
+  .avatar img{
+    margin: auto;
+    width: 200px;
+    height: auto;
+    border-radius: 100px;
+    border: 2px solid color($colors, primary)
+  }
+  .avatar {
+  }
+}
