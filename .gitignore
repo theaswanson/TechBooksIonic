@@ -24,6 +24,8 @@ node_modules/
 tmp/
 temp/
 www/
+src/config.ts
+src/api.ts
 platforms/
 plugins/
 plugins/android.json
