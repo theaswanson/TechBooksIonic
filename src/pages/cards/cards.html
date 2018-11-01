@@ -21,7 +21,8 @@
                      [orientation]="cardDirection"
                      [tinder-card]="cardOverlay"
                      (onLike)="onCardInteract($event, book)">
-
+  <div [ngSwitch]="isFront" [@show]="isFront ? 'frontCard':'backCard'">
+    <div *ngSwitchCase="true"> 
       <ion-row>
         <ion-item>
           <h3>
@@ -39,6 +40,13 @@
         </h2>
         </ion-col>
       </ion-row>
+    </div>
+
+    <div *ngSwitchCase="false">
+        {{ book.volumeInfo.description.substring(0,800) }}...
+    </div>
+  </div>
+
     </sc-card>
   </div>
 </ion-content>

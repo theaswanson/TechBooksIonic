@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
+import {  trigger,  state,  style,  animate,  transition } from '@angular/animations';
 
 
 import 'rxjs/add/operator/map';
@@ -13,9 +14,24 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-cards',
   templateUrl: 'cards.html',
+  animations: [
+    trigger('show' , [
+
+    state('frontCard' , style({
+    })),
+    state('backCard' , style({
+
+    })),
+   transition('frontCard <=> backCard', [
+     animate('0.5s ease-in-out')
+   ]),
+  ]),
+
+ ],
+  
 })
 export class CardsPage {
-
+  isFront = true;
   results:any;
   books:any;
   bookId:any;
@@ -51,7 +67,7 @@ export class CardsPage {
         this.results = data;
         this.books = [];
         for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+          if (this .results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
             this.books.push(this.results.items[item]);
           }
         }
@@ -70,12 +86,8 @@ export class CardsPage {
   }
 
   OpenCardPage(book) {
-    const toast = this.toastCtrl.create({
-      message: "You clicked on " + book.volumeInfo.title,
-      duration: 2000,
-    });
-
-    toast.present();
+    this.toggle();
+    console.log(this.isFront);
   }
 
   destroyEvent(book) {
@@ -103,5 +115,8 @@ export class CardsPage {
     else {
       this.destroyEvent(book)
     }
+  }
+  toggle(){
+    this.isFront = !this.isFront;
   }
 }

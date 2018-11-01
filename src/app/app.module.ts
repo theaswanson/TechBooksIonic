@@ -21,6 +21,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GoogleLoginComponent } from  '../components/google-login/google-login';
 import { firebaseConfig } from '../config'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in the next section
 
@@ -35,9 +36,10 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
     GoogleLoginComponent,
     SettingsPage,
     LibraryPage,
-    CardsPage
+    CardsPage    
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
