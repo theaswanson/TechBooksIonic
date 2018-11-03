@@ -17,13 +17,13 @@ import 'rxjs/add/operator/map';
   animations: [
     trigger('show' , [
 
-    state('frontCard' , style({
+    state('fadeIn' , style({
+      opacity: 1,
+      //Adding this line allows card information to slide in from the top
+      //transform: 'translateY(50%)'
     })),
-    state('backCard' , style({
-
-    })),
-   transition('frontCard <=> backCard', [
-     animate('0.5s ease-in-out')
+   transition('void => *', [style({opacity:'0'}),
+     animate('0.3s ease-in')
    ]),
   ]),
 
@@ -67,7 +67,7 @@ export class CardsPage {
         this.results = data;
         this.books = [];
         for (var item in this.results.items) {
-          if (this .results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+          if (this.results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
             this.books.push(this.results.items[item]);
           }
         }
@@ -85,9 +85,8 @@ export class CardsPage {
       })
   }
 
-  OpenCardPage(book) {
+  OpenCardPage() {
     this.toggle();
-    console.log(this.isFront);
   }
 
   destroyEvent(book) {

@@ -9,7 +9,7 @@
 
 <ion-content padding text-center>
   <div *ngIf="loading == true">
-    <img class="loading" src="assets/imgs/loading.svg" alt="loading">
+    <img class="loading" src="assets/imgs/loading.svg" alt="loading" >
   </div>
   <div *ngIf="noResults == true">
     <h3 class="no-results" style="margin-top: 10px;">Sorry! No results for this search.</h3>
@@ -21,8 +21,9 @@
                      [orientation]="cardDirection"
                      [tinder-card]="cardOverlay"
                      (onLike)="onCardInteract($event, book)">
-  <div [ngSwitch]="isFront" [@show]="isFront ? 'frontCard':'backCard'">
-    <div *ngSwitchCase="true"> 
+  <div [ngSwitch]="isFront">
+    <div *ngSwitchCase="true" [@show]="'fadeIn'"> 
+      <div >
       <ion-row>
         <ion-item>
           <h3>
@@ -40,10 +41,15 @@
         </h2>
         </ion-col>
       </ion-row>
+      </div>
     </div>
 
-    <div *ngSwitchCase="false">
-        {{ book.volumeInfo.description.substring(0,800) }}...
+    <div *ngSwitchCase="false" [@show]="'fadeIn'">
+        Id:{{ book.id }}
+        <br>
+        selfLink: {{book.saleInfo.country}}
+        <br>
+        {{ book.volumeInfo.description}}...
     </div>
   </div>
 
