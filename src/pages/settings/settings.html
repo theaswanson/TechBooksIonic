@@ -1,11 +1,13 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Settings</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
+    <ion-navbar>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title text-center>Settings</ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content *ngIf="user" padding text-center>
   <h2>{{user.displayName}}</h2>
