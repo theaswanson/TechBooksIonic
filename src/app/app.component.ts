@@ -28,7 +28,8 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-
+      StatusBar.styleDefault();
+      SplashScreen.hide();
     })
   }
 
