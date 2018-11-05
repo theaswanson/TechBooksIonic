@@ -10,8 +10,6 @@ import { Platform } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs'
 import { LoginPage } from '../../pages/login/login'
 import { firebaseConfig } from '../../config'
-import { DashboardTabsPage } from '../../pages/dashboard-tabs/dashboard-tabs'
-import { MenuPage } from '../../pages/menu/menu';
 
 
 @Component({
