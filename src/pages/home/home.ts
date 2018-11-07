@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { CardsPage } from '../cards/cards';
 import { EasterEggPage } from '../easter-egg/easter-egg';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ModalController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -18,7 +19,7 @@ export class HomePage {
   loading:any;
   logoTaps:number;
 
-  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
     this.books = [];
     this.noResults = false;
     this.loading = false;
@@ -46,8 +47,13 @@ export class HomePage {
     if (this.logoTaps == 3)
     {
       this.logoTaps = 0;
-      this.navCtrl.push(EasterEggPage);
+      this.openModal();
     }
+  }
+
+  openModal() { 
+    var modalPage = this.modalCtrl.create(EasterEggPage); 
+    modalPage.present(); 
   }
 
   searchFunction(q: string) {
