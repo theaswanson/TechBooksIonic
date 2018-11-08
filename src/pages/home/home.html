@@ -15,7 +15,7 @@
   </div>
     <ion-card class="resultCards" *ngFor="let book of books" (click)="openCards(book.id)">
       <ion-row>
-        <ion-item>
+        <ion-item text-wrap>
           <h3>
             <strong>{{ book.volumeInfo.title }}</strong>
           </h3>
