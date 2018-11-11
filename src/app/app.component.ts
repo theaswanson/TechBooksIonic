@@ -7,23 +7,26 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { LibraryPage } from '../pages/library/library';
 import { SettingsPage } from '../pages/settings/settings';
+import { MenuPage } from '../pages/menu/menu';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
-  pages: Array<{title: string, component: any}>;
+  rootPage:any = MenuPage;
+ // pages: Array<{title: string, component: any}>;
  
   
   constructor(public platform: Platform) {
+   /*
     this.pages = [
       { title: 'Search', component: HomePage },
       { title: 'Library', component: LibraryPage },
       { title: 'Settings', component: SettingsPage },
 
     ];
+    */
   }
 
   initializeApp() {
@@ -31,8 +34,9 @@ export class MyApp {
       
     })
   }
-
+/*
   openPage(page) {
     this.nav.setRoot(page.component);
   }
+*/
 }

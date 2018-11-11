@@ -4,9 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SwipeCardsModule } from 'ng2-swipe-cards';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { MenuPage } from '../pages/menu/menu';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { CardsPage } from '../pages/cards/cards';
@@ -27,11 +26,10 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     LoginPage,
+    MenuPage,
     GoogleLoginComponent,
     SettingsPage,
     LibraryPage,
@@ -48,14 +46,13 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     LoginPage,
     SettingsPage,
     LibraryPage,
-    CardsPage
+    CardsPage,
+    MenuPage
   ],
   providers: [
     StatusBar,
