@@ -14,19 +14,12 @@ import { MenuPage } from '../pages/menu/menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = MenuPage;
- // pages: Array<{title: string, component: any}>;
+  rootPage:any = LoginPage;
+
  
   
   constructor(public platform: Platform) {
-   /*
-    this.pages = [
-      { title: 'Search', component: HomePage },
-      { title: 'Library', component: LibraryPage },
-      { title: 'Settings', component: SettingsPage },
 
-    ];
-    */
   }
 
   initializeApp() {
@@ -34,9 +27,5 @@ export class MyApp {
       
     })
   }
-/*
-  openPage(page) {
-    this.nav.setRoot(page.component);
-  }
-*/
+
 }

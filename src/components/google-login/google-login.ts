@@ -7,9 +7,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform } from 'ionic-angular';
-import { TabsPage } from '../../pages/tabs/tabs'
-import { LoginPage } from '../../pages/login/login'
-import { firebaseConfig } from '../../config'
+import { MenuPage } from '../../pages/menu/menu';
+import { firebaseConfig } from '../../config';
 
 
 @Component({
@@ -48,7 +47,7 @@ export class GoogleLoginComponent {
       return await this.afAuth.auth.signInWithCredential(
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
       ).then(
-        () => this.navCtrl.push(TabsPage)
+        () => this.navCtrl.setRoot(MenuPage)
       )
     } catch(err) {
       console.log(err)
@@ -59,7 +58,7 @@ export class GoogleLoginComponent {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credentials = await this.afAuth.auth.signInWithPopup(provider).then(
-        () => this.navCtrl.push(TabsPage)
+        () => this.navCtrl.setRoot(MenuPage)
       )
     } catch(err) {
       console.log(err)
