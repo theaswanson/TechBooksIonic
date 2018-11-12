@@ -6,10 +6,12 @@ import { EasterEggPage } from '../easter-egg/easter-egg';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ModalController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
+import { BookLogicProvider } from '../../providers/book-logic/book-logic';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [BookLogicProvider]
 })
 export class HomePage {
 
