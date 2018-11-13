@@ -21,7 +21,7 @@ export class HomePage {
   loading:any;
   logoTaps:number;
 
-  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
+  constructor(public logic:BookLogicProvider, public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
     this.books = [];
     this.noResults = false;
     this.loading = false;

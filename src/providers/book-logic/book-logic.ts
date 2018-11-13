@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 
 
@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class BookLogicProvider {
 
   public text: any = "Hello from your Provider!";
-  constructor(public http: HttpClient) {
+  constructor() {
  
   }
 

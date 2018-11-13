@@ -67,8 +67,8 @@ import { BookLogicProvider } from '../providers/book-logic/book-logic'; // We'll
     SplashScreen,
     Keyboard,
     AngularFireAuthModule,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BookLogicProvider
+    BookLogicProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
