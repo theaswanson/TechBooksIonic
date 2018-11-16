@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Http } from '@angular/http';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Injectable()
@@ -11,12 +12,18 @@ export class BookLogicProvider {
   books:any;
   noResults:any;
   loading:any;
+  bookId:any;
+  user:any;
   
-  
-  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
+  constructor(public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController, private afAuth: AngularFireAuth, public navParams: NavParams) {
     this.books = [];
     this.noResults = false;
     this.loading = false;
+    this.bookId = navParams.get('bookId');
+
+    this.afAuth.authState.subscribe(user => {
+      this.user = user
+    })
   }
 
   openKeyboard() {
@@ -63,6 +70,32 @@ export class BookLogicProvider {
           }
         });
     }
+  }
+  
+  ionViewDidLoad() {
+    console.log(this.user)
+    this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').map(res => res.json()).subscribe(
+      data => {
+
+        this.results = data;
+        this.books = [];
+        for (var item in this.results.items) {
+          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+            this.books.push(this.results.items[item]);
+          }
+        }
+
+        if (this.books.length == 0) {
+          this.noResults = true;
+        }
+
+        this.loading = false
+
+        err => {
+          console.log("Error in searchFunction.");
+          alert("Error in searchFunction.");
+        }
+      })
   }
 
 }

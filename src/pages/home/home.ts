@@ -18,7 +18,7 @@ export class HomePage {
 
   logoTaps:number;
 
-  constructor(public logic:BookLogicProvider, public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
+  constructor(public bookLogic: BookLogicProvider, public navCtrl: NavController, public http: Http, private keyboard: Keyboard, public modalCtrl : ModalController) {
  
     this.logoTaps = 0;
   }
