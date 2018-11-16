@@ -66,8 +66,15 @@ export class CardsPage {
 
         this.results = data;
         this.books = [];
+        // Loops through list of possible books
         for (var item in this.results.items) {
+          // Checks to see if the book is valid
           if (this.results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+            // Grab ID of confirmed book
+            // Do API Call using Book ID
+            // push this book onto the array of books
+
+            // Adds result to book array
             this.books.push(this.results.items[item]);
           }
         }
