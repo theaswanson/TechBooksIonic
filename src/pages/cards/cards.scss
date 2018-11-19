@@ -16,4 +16,8 @@ page-cards {
   sc-card {
     height: 80% !important;
   }
+
+  ion-content div h3 {
+    margin-top: 10px;
+  }
 }

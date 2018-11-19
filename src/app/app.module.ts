@@ -23,7 +23,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GoogleLoginComponent } from  '../components/google-login/google-login';
 import { firebaseConfig } from '../config'
 
-import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in the next section
+import { GooglePlus } from '@ionic-native/google-plus';
+import { BookLogicProvider } from '../providers/book-logic/book-logic'; // We'll install this in the next section
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { GooglePlus } from '@ionic-native/google-plus'; // We'll install this in
     SplashScreen,
     Keyboard,
     AngularFireAuthModule,
+    BookLogicProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

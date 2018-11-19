@@ -2,21 +2,22 @@
   <img tappable (tap)=logoTap($event) id="logo" src="assets/imgs/techbooks.png" alt="TechBooks">
     <form action=".">
       <ion-item id="input-item">
-          <ion-input id="input" #q (keyup.enter)="searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
+          <ion-input id="input" #q (keyup.enter)="bookLogic.searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
       </ion-item>
     </form>
 
-  <div *ngIf="loading == true">
+  <div *ngIf="bookLogic.loading == true">
     <img class="loading" src="assets/imgs/loading.svg" alt="">
   </div>
-  <div *ngIf="noResults == true">
+  <div *ngIf="bookLogic.noResults == true">
     <h3 class="no-results">Sorry! No results for this search.</h3>
     <img src="assets/imgs/no_data.svg" alt="No Results">
   </div>
-    <ion-card class="resultCards" *ngFor="let book of books" (click)="openCards(book.id)">
+    <ion-card class="resultCards" *ngFor="let book of bookLogic.books" (click)="openCards(book.id)">
       <ion-row>
         <ion-item text-wrap>
           <h3>
+           
             <strong>{{ book.volumeInfo.title }}</strong>
           </h3>
         </ion-item>
