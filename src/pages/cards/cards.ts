@@ -64,21 +64,27 @@ export class CardsPage {
     this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').map(res => res.json()).subscribe(
       data => {
 
+        var itemGrab;
+        var itemID;
+        var itemSelect;
         this.results = data;
         this.books = [];
         // Loops through list of possible books
         for (var item in this.results.items) {
           // Checks to see if the book is valid
           if (this.results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-            // Grab ID of confirmed book
-            // Do API Call using Book ID
-            // push this book onto the array of books
+            itemID = this.results.items[item].id;
+            this.http.get('https://www.googleapis.com/books/v1/volumes/' + itemID).map(res => res.json()).subscribe( info => {
+              
+              this.books.push(info);
+              console.log(this.books.length);
+            });
+            
 
-            // Adds result to book array
-            this.books.push(this.results.items[item]);
+           //this.books.push(this.results.items[item]);
           }
         }
-
+        console.log(this.books);
         if (this.books.length == 0) {
           this.noResults = true;
         }

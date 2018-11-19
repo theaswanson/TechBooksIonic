@@ -56,6 +56,7 @@ export class HomePage {
           for (var item in this.results.items) {
             if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
               this.books.push(this.results.items[item]);
+              console.log(this.results.items)
             }
           }
           if (this.books.length == 0) {
