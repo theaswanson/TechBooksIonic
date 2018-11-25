@@ -42,6 +42,7 @@ export class HomePage {
     this.books = [];
     this.loading = true;
     this.noResults = false;
+    
 
     if (q.replace(/\s/g, '').length == 0) {
       this.noResults = true
@@ -55,8 +56,7 @@ export class HomePage {
 
           for (var item in this.results.items) {
             if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-              this.books.push(this.results.items[item]);
-              console.log(this.results.items)
+              this.books.push(this.results.items[item])
             }
           }
           if (this.books.length == 0) {
@@ -64,8 +64,6 @@ export class HomePage {
           }
 
           this.loading = false;
-
-          console.log(this.books);
 
           err => {
             console.log("Error in searchFunction.");

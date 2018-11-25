@@ -5,10 +5,13 @@ import { ToastController } from 'ionic-angular';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin'
 import {  trigger,  state,  style,  animate,  transition } from '@angular/animations';
 
 
 import 'rxjs/add/operator/map';
+import { forkJoin } from 'rxjs/observable/forkJoin';
+import { of } from 'rxjs/observable/of';
 
 @IonicPage()
 @Component({
@@ -31,9 +34,11 @@ import 'rxjs/add/operator/map';
   
 })
 export class CardsPage {
+  test :number = 5;
   isFront = true;
   results:any;
   books:any;
+  bookIds:any;
   bookId:any;
   noResults:any;
   loading:any;
@@ -50,7 +55,8 @@ export class CardsPage {
 
   constructor(private afAuth: AngularFireAuth, public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.books = [];
-    this.bookId = navParams.get('bookId')
+    this.bookId = navParams.get('bookId');
+    this.bookIds = [];
     this.noResults = false;
     this.loading = true;
 
@@ -60,42 +66,55 @@ export class CardsPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.user)
-    this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').map(res => res.json()).subscribe(
+    this.bookIds = [];
+  //  this.books = [];
+
+    let associatedBooks = this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').map(res => res.json());
+
+    associatedBooks.subscribe(
       data => {
+        var URLS = [];
 
-        var itemGrab;
-        var itemID;
-        var itemSelect;
         this.results = data;
-        this.books = [];
-        // Loops through list of possible books
-        for (var item in this.results.items) {
-          // Checks to see if the book is valid
-          if (this.results.items[item].volumeInfo && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-            itemID = this.results.items[item].id;
-            this.http.get('https://www.googleapis.com/books/v1/volumes/' + itemID).map(res => res.json()).subscribe( info => {
-              
-              this.books.push(info);
-              console.log(this.books.length);
-            });
-            
 
-           //this.books.push(this.results.items[item]);
+        for(var item in this.results.items){
+          if(this.results.items[item].volumeInfo 
+            && this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+            && this.results.items[item].volumeInfo.hasOwnProperty('description')){
+
+              this.bookIds.push(this.results.items[item].id);
+            }
           }
-        }
-        console.log(this.books);
-        if (this.books.length == 0) {
-          this.noResults = true;
-        }
 
-        this.loading = false
+         for(var ID of this.bookIds){
+          URLS.push('https://www.googleapis.com/books/v1/volumes/' + ID);
+         }
+
+         /*
+              Need to find a way to run api call on each array element|
+              Currently commented code doesn't work errors out when pushing
+              Elements to the books array         
+         */
+       /* 
+         for(var request of URLS){
+           this.http.get(request).map(res => res.json()).subscribe(
+             allData =>{
+           //   this.books.push(request);
+             }
+           )}
+        */  
+
+         if(URLS.length == 0){
+           this.noResults = true;
+         }
+
+         this.loading = false;
 
         err => {
           console.log("Error in searchFunction.");
           alert("Error in searchFunction.");
         }
-      })
+     })
   }
 
   OpenCardPage() {
