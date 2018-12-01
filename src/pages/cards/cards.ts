@@ -51,6 +51,7 @@ export class CardsPage {
   }
 
   ionViewDidLoad() {
+<<<<<<< HEAD
     this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').pipe(map(res => res.json()))
       .subscribe(
         data => {
@@ -64,6 +65,17 @@ export class CardsPage {
             {
               this.books.push(this.results.items[item]);
             }
+=======
+    console.log(this.user)
+    this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').pipe(map(res => res.json())).subscribe(
+      data => {
+
+        this.results = data;
+        this.books = [];
+        for (var item in this.results.items) {
+          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+            this.books.push(this.results.items[item]);
+>>>>>>> Create Library functionality
           }
 
           if (this.books.length == 0) {

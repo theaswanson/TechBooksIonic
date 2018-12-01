@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -18,10 +19,11 @@ import { firebaseConfig } from '../../config'
 })
 export class GoogleLoginComponent {
 
-  user: Observable<firebase.User>;
+  user: any;
 
   constructor(
     private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
     private gplus: GooglePlus,
     private platform: Platform,
     public navCtrl: NavController
@@ -32,8 +34,7 @@ export class GoogleLoginComponent {
   googleLogin() {
     if (this.platform.is("cordova")) {
       this.nativeGoogleLogin();
-    }
-    else {
+    } else {
       this.webGoogleLogin();
     }
   }
@@ -58,11 +59,30 @@ export class GoogleLoginComponent {
   async webGoogleLogin(): Promise<any> {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
-      const credentials = await this.afAuth.auth.signInWithPopup(provider).then(
-        () => this.navCtrl.push(TabsPage)
-      )
+      const credentials = await this.afAuth.auth.signInWithPopup(provider)
+        .then((credential) => {
+          console.log(credential.user)
+          this.updateUser(credential.user)
+          this.navCtrl.push(TabsPage)
+        })
     } catch(err) {
       console.log(err)
     }
+  }
+
+  private updateUser(user) {
+    const usersRef = this.afs.collection('users').doc(user.uid)
+
+    usersRef.get()
+      .subscribe((docSnapshot) => {
+        if (docSnapshot.exists) {
+        } else {
+          usersRef.set({
+            uid: user.uid,
+            email: user.email,
+            name: user.displayName
+          })
+        }
+    });
   }
 }
