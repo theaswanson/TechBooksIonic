@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import * as firebase from 'firebase/app';
-import { AngularFireAuth  } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -24,7 +24,6 @@ export class LibraryPage {
   ) {
     this.afAuth.authState.subscribe(user => {
       this.user = user;
-      console.log(this.books)
     })
   }
 

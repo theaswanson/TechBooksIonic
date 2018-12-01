@@ -61,7 +61,6 @@ export class GoogleLoginComponent {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credentials = await this.afAuth.auth.signInWithPopup(provider)
         .then((credential) => {
-          console.log(credential.user)
           this.updateUser(credential.user)
           this.navCtrl.push(TabsPage)
         })

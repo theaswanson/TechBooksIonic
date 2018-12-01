@@ -53,13 +53,9 @@ export class BookLogicProvider {
             this.results = data;
 
             for (var item in this.results.items) {
-<<<<<<< HEAD
-              if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+              if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')
               && this.results.items[item].volumeInfo.hasOwnProperty('description')
               && this.results.items[item].volumeInfo.hasOwnProperty('categories')) {
-=======
-              if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
->>>>>>> Create Library functionality
                 this.books.push(this.results.items[item]);
               }
             }
@@ -68,17 +64,9 @@ export class BookLogicProvider {
             }
 
             this.loading = false;
-<<<<<<< HEAD
-            
+
             err => {
               console.log(err);
-=======
-
-            console.log(this.books);
-
-            err => {
-              console.log("Error in searchFunction.");
->>>>>>> Create Library functionality
               alert("Error in searchFunction.");
             }
           })
@@ -93,7 +81,7 @@ export class BookLogicProvider {
           this.results = data;
           this.books = [];
           for (var item in this.results.items) {
-            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')
             && this.results.items[item].volumeInfo.hasOwnProperty('description')
             && this.results.items[item].volumeInfo.hasOwnProperty('categories')
             && this.results.items[item].hasOwnProperty('searchInfo')) {

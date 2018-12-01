@@ -19,8 +19,6 @@ export class TabsPage {
   user:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.navCtrl)
     this.user = navParams.get('credentials')
-    console.log(this.user)
   }
 }
