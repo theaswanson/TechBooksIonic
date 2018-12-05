@@ -26,6 +26,10 @@ export class BookLogicProvider {
     })
   }
 
+  hasProp(obj, prop) {
+    return Object.prototype.hasOwnProperty.call(obj, prop);
+  }
+
   openKeyboard() {
     this.keyboard.show();
   }
@@ -52,7 +56,11 @@ export class BookLogicProvider {
           this.results = data;
 
           for (var item in this.results.items) {
-            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+            /*if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+              this.books.push(this.results.items[item]);
+            }*/
+            if (this.hasProp(this.results.items[item], 'volumeInfo') && this.hasProp(this.results.items[item].volumeInfo, 'imageLinks') && this.hasProp(this.results.items[item].volumeInfo, 'categories'))
+            {
               this.books.push(this.results.items[item]);
             }
           }
@@ -80,7 +88,9 @@ export class BookLogicProvider {
         this.results = data;
         this.books = [];
         for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
+          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+          && this.results.items[item].volumeInfo.hasOwnProperty('description') 
+          && this.results.items[item].volumeInfo.hasOwnProperty('categories')) {
             this.books.push(this.results.items[item]);
           }
         }
@@ -89,7 +99,7 @@ export class BookLogicProvider {
           this.noResults = true;
         }
 
-        this.loading = false
+        this.loading = false;
 
         err => {
           console.log("Error in searchFunction.");
