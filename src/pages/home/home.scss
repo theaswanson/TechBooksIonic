@@ -6,10 +6,11 @@ page-home {
 
     ion-row ion-col img {
         margin: auto;
-        max-width: 100px;
-        vertical-align: middle;
+        position:absolute; /*it can be fixed too*/
+        left:0; right:0;
+        top:0; bottom:0;
+        max-width: 150px;
     }
-
     #cards {
         max-width: 600px;
         margin-left: auto;

@@ -22,6 +22,39 @@
                      [tinder-card]="cardOverlay"
                      (onLike)="onCardInteract($event, book)">
 
+                     <ion-grid>
+                      <ion-row>
+                         <ion-col class="cardImage" col-4>
+                             <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
+                          </ion-col>
+                          <ion-col col-8 style="background-color: none; lighting-color: none;">
+                            <ion-row style="background-color: none; lighting-color: none;">
+                               <ion-item class="cardTitle" text-wrap>
+                                   <h1>
+                                      <strong>{{ book.volumeInfo.title }}</strong>
+                                   </h1>
+                                </ion-item>
+                                <ion-item class="cardAuthor" text-wrap>
+                                   <h2>
+                                      <b>Authors:</b> <i>{{ book.volumeInfo.authors.join(', ') }}</i>
+                                   </h2>
+                                </ion-item>
+                                <ion-item class="cardCategory" text-wrap>
+                                   <h2 style="text-align: left;">
+                                       <b>Genre:</b> {{ book.volumeInfo.categories[0] }}
+                                    </h2>
+                                </ion-item>
+                                <ion-item class="cardDescription" text-wrap>
+                                 <h2 style="text-align: left;"><b>Description:</b></h2>
+                                  <h2 style="text-align: left;">
+                                     {{ book.volumeInfo.description }}
+                                  </h2>
+                               </ion-item>
+                            </ion-row>
+                          </ion-col>
+                      </ion-row>
+                    </ion-grid>
+      <!--
       <ion-row>
         <ion-item>
           <h3>
@@ -38,7 +71,7 @@
           {{ book.volumeInfo.description.substring(0,100) }}...
         </h2>
         </ion-col>
-      </ion-row>
+      </ion-row>-->
     </sc-card>
   </div>
 </ion-content>

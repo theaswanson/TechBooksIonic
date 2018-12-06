@@ -1,23 +1,234 @@
-page-cards {
+@media (min-width: 600px)
+{
+    page-cards {
 
-  img {
-      max-height: 250px;
-  }
-  ion-content {
-      background: color($colors, primary);
-  }
-  ion-row ion-col img{
-      margin: auto;
-      width: 100px;
-  }
-  ion-card ion-row ion-item h3{
-      text-align: center;
-  }
-  sc-card {
-    height: 80% !important;
-  }
+        .sc-card {
+            max-width: 600px;
+            position:absolute;
+            left: 0; 
+            right: 0;
+            top: 0; 
+            bottom: 0;
+            margin: auto;
+            height: 80% !important;
+            overflow: overlay;
+        }
+        ion-content {
+            background: color($colors, dark);
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        ion-row ion-col img {
+            max-width: 150px;
+        }
+    
+        #card-container {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        ion-card .cardTitle {
+            text-align: left; 
+            line-height: 12px;
+        }
+    
+        ion-card .cardCategory {
+            text-align: right; 
+            line-height: 12px;
+        }
+    
+        ion-card .cardAuthor {
+            width: 100%; 
+            float: left; 
+            text-align: left;
+        }
+    
+        ion-card .cardDescription {
+            
+        }
+    
+        ion-card ion-row ion-item h1{
+            text-align: left;
+        }
+    
+        ion-card ion-row ion-item h3{
+            text-align: center;
+        }
+    
+        .resultCards {
+          padding: 10px;
+        }
+    
+        #logo {
+            height: 250px;
+            max-height: 50vw;
+        }
+    
+        #input-item {
+            padding-left: 0;
+        }
+    
+        #input {
+            width: 100%;
+            font-size: 25px;
+            padding-left: 35px;
+        }
+    
+        .loading {
+            margin-top: 100px;
+        }
+    
+        .text-input {
+            text-align: center;
+        }
+    
+        h2 {
+            margin: 3px;
+        }
+    
+        div h3 {
+            margin-top: 10px;
+        }
+        /*
+      img {
+          max-height: 250px;
+      }
+      ion-content {
+          background: color($colors, primary);
+      }
+      ion-row ion-col img{
+          margin: auto;
+          width: 100px;
+      }
+      ion-card ion-row ion-item h3{
+          text-align: center;
+      }
+      sc-card {
+        height: 80% !important;
+      }
+    
+      ion-content div h3 {
+        margin-top: 10px;
+      }
+      */
+    }
+    
+}
+@media (max-width: 600px)
+{
+    page-cards {
 
-  ion-content div h3 {
-    margin-top: 10px;
-  }
+        .sc-card {
+            width: 100%;
+            position:absolute; /*it can be fixed too*/
+            left: 0; 
+            right: 0;
+            top: 0; 
+            bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 375px;
+        }
+        ion-content {
+            background: color($colors, dark);
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        ion-row ion-col img {
+            max-width: 150px;
+        }
+    
+        #card-container {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        ion-card .cardTitle {
+            text-align: left; 
+            line-height: 12px;
+        }
+    
+        ion-card .cardCategory {
+            text-align: right; 
+            line-height: 12px;
+        }
+    
+        ion-card .cardAuthor {
+            width: 100%; 
+            float: left; 
+            text-align: left;
+        }
+    
+        ion-card .cardDescription {
+            
+        }
+    
+        ion-card ion-row ion-item h1{
+            text-align: left;
+        }
+    
+        ion-card ion-row ion-item h3{
+            text-align: center;
+        }
+    
+        .resultCards {
+          padding: 10px;
+        }
+    
+        #logo {
+            height: 250px;
+            max-height: 50vw;
+        }
+    
+        #input-item {
+            padding-left: 0;
+        }
+    
+        #input {
+            width: 100%;
+            font-size: 25px;
+            padding-left: 35px;
+        }
+    
+        .loading {
+            margin-top: 100px;
+        }
+    
+        .text-input {
+            text-align: center;
+        }
+    
+        h2 {
+            margin: 3px;
+        }
+    
+        div h3 {
+            margin-top: 10px;
+        }
+        /*
+      img {
+          max-height: 250px;
+      }
+      ion-content {
+          background: color($colors, primary);
+      }
+      ion-row ion-col img{
+          margin: auto;
+          width: 100px;
+      }
+      ion-card ion-row ion-item h3{
+          text-align: center;
+      }
+      sc-card {
+        height: 80% !important;
+      }
+    
+      ion-content div h3 {
+        margin-top: 10px;
+      }
+      */
+    }
+    
 }

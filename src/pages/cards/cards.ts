@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import * as firebase from 'firebase/app';
+import { map,catchError } from "rxjs/operators";
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
-
-
+import { AngularFirestore } from '@angular/fire/firestore';
 import 'rxjs/add/operator/map';
 
 @IonicPage()
@@ -32,7 +32,14 @@ export class CardsPage {
   };
   user:any;
 
-  constructor(private afAuth: AngularFireAuth, public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    public toastCtrl: ToastController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public http: Http,
+    private afStore: AngularFirestore
+  ) {
     this.books = [];
     this.bookId = navParams.get('bookId')
     this.noResults = false;
@@ -44,35 +51,39 @@ export class CardsPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.user)
-    this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').map(res => res.json()).subscribe(
-      data => {
+    this.http.get('https://www.googleapis.com/books/v1/volumes/' + this.bookId + '/associated').pipe(map(res => res.json()))
+      .subscribe(
+        data => {
 
-        this.results = data;
-        this.books = [];
-        for (var item in this.results.items) {
-          if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') && this.results.items[item].volumeInfo.hasOwnProperty('description')) {
-            this.books.push(this.results.items[item]);
+          this.results = data;
+          this.books = [];
+          for (var item in this.results.items) {
+            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+            && this.results.items[item].volumeInfo.hasOwnProperty('description')
+            && this.results.items[item].volumeInfo.hasOwnProperty('categories'))
+            {
+              this.books.push(this.results.items[item]);
+            }
           }
-        }
 
-        if (this.books.length == 0) {
-          this.noResults = true;
-        }
+          if (this.books.length == 0) {
+            this.noResults = true;
+          }
 
-        this.loading = false
+          this.loading = false
 
-        err => {
-          console.log("Error in searchFunction.");
-          alert("Error in searchFunction.");
-        }
-      })
+          err => {
+            console.log("Error in searchFunction.");
+            alert("Error in searchFunction.");
+          }
+        })
   }
 
   OpenCardPage(book) {
     const toast = this.toastCtrl.create({
       message: "You clicked on " + book.volumeInfo.title,
       duration: 2000,
+      position: 'top'
     });
 
     toast.present();
@@ -82,18 +93,28 @@ export class CardsPage {
     const toast = this.toastCtrl.create({
       message: "you disliked " + book.volumeInfo.title,
       duration: 2000,
+      position: 'top'
     });
 
     toast.present();
   }
 
   likeEvent(book) {
-    const toast = this.toastCtrl.create({
-      message: "you liked " + book.volumeInfo.title,
-      duration: 2000,
-    });
+    this.afStore.collection('books').add({
+      userId: this.user.uid,
+      title: book.volumeInfo.title,
+      description: book.volumeInfo.description,
+      thumbnail: book.volumeInfo.imageLinks.smallThumbnail
+    }).then(ref => {
+      ref.update({uid: ref.id})
+      const toast = this.toastCtrl.create({
+        message: "you liked " + book.volumeInfo.title,
+        duration: 2000,
+        position: 'top'
+      });
 
-    toast.present();
+      toast.present();
+    })
   }
 
   onCardInteract(event, book) {
