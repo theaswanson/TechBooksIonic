@@ -1,54 +1,52 @@
 <ion-content padding text-center>
-    <img tappable (tap)=logoTap($event) id="logo" src="assets/imgs/techbooks.png" alt="TechBooks">
-    <form action=".">
-       <ion-item id="input-item">
-          <ion-input id="input" #q (keyup.enter)="bookLogic.searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
-       </ion-item>
-    </form>
-    <div *ngIf="bookLogic.loading == true">
-       <img class="loading" src="assets/imgs/loading.svg" alt="">
-    </div>
-    <div *ngIf="bookLogic.noResults == true">
-      <br>
-       <h3 class="no-results">Sorry! No results for this search.</h3>
-       <img src="assets/imgs/no_data.svg" alt="No Results">
-    </div>
-    <div id="cards">
-       <ion-card class="resultCards" *ngFor="let book of bookLogic.books" (click)="openCards(book.id)">
-         <ion-grid>
-           <ion-row>
-              <ion-col class="cardImage" col-4>
-                  <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
-               </ion-col>
-               <ion-col col-8>
-                 <ion-row>
-                    <ion-item class="cardTitle" text-wrap>
-                        <h1>
-                           <strong>{{ book.volumeInfo.title }}</strong>
-                        </h1>
-                     </ion-item>
-                     <ion-item class="cardAuthor" text-wrap>
-                        <h2>
-                           <b>Authors:</b> <i>{{ book.volumeInfo.authors.join(', ') }}</i>
-                        </h2>
-                     </ion-item>
-                     <ion-item class="cardCategory" text-wrap>
-                        <h2 style="text-align: left;">
-                            <b>Genre:</b> {{ book.volumeInfo.categories[0] }}
-                         </h2>
-                     </ion-item>
-                     <ion-item class="cardDescription" text-wrap>
-                      <h2 style="text-align: left;"><b>Description:</b></h2>
-                       <h2 style="text-align: left;">
-                          {{ book.searchInfo.textSnippet }}
-                       </h2>
-                    </ion-item>
-                 </ion-row>
-               </ion-col>
-           </ion-row>
-         </ion-grid>
-       </ion-card>
-    </div>
- </ion-content>
- 
- 
+  <img tappable (tap)=logoTap($event) id="logo" src="assets/imgs/techbooks.png" alt="TechBooks">
+  <form action=".">
+     <ion-item id="input-item">
+        <ion-input id="input" #q (keyup.enter)="bookLogic.searchFunction(q.value)" placeholder="Search here..." autocorrect="on" type="search" clearInput></ion-input>
+     </ion-item>
+  </form>
+  <div *ngIf="bookLogic.loading == true">
+     <img class="loading" src="assets/imgs/loading.svg" alt="">
+  </div>
+  <div *ngIf="bookLogic.noResults == true">
+     <br>
+     <h3 class="no-results">Sorry! No results for this search.</h3>
+     <img src="assets/imgs/no_data.svg" alt="No Results">
+  </div>
+  <div id="cards">
+     <ion-card class="resultCards" *ngFor="let book of bookLogic.books" (click)="openCards(book.id)">
+     <ion-grid>
+        <ion-row>
+           <ion-col class="cardImage" col-4>
+              <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
+           </ion-col>
+           <ion-col col-8>
+              <ion-row>
+                 <ion-item class="cardTitle" text-wrap>
+                    <h1>
+                       <strong>{{ book.volumeInfo.title }}</strong>
+                    </h1>
+                 </ion-item>
+                 <ion-item class="cardAuthor" text-wrap>
+                    <h2>
+                       <b>Authors:</b> <i>{{ book.volumeInfo.authors.join(', ') }}</i>
+                    </h2>
+                 </ion-item>
+                 <ion-item class="cardCategory" text-wrap>
+                    <h2 style="text-align: left;">
+                       <b>Genre:</b> {{ book.volumeInfo.categories[0] }}
+                    </h2>
+                 </ion-item>
+                 <ion-item class="cardDescription" text-wrap>
+                    <h2 style="text-align: left;"><b>Description:</b></h2>
+                    <h2 style="text-align: left;">
+                       {{ book.searchInfo.textSnippet }}
+                    </h2>
+                 </ion-item>
+              </ion-row>
+           </ion-col>
+        </ion-row>
+     </ion-grid>
+     </ion-card>
+  </div>
+</ion-content>
