@@ -58,7 +58,7 @@ export class CardsPage {
           this.results = data;
           this.books = [];
           for (var item in this.results.items) {
-            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')
             && this.results.items[item].volumeInfo.hasOwnProperty('description')
             && this.results.items[item].volumeInfo.hasOwnProperty('categories'))
             {
