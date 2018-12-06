@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ActionSheetController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -21,7 +21,10 @@ export class LibraryPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afStore: AngularFirestore,
+    private iab: InAppBrowser,
+    private actionSheetCtrl: ActionSheetController
   ) {
+    this.books = [];
     this.afAuth.authState.subscribe(user => {
       this.user = user;
     })
@@ -41,11 +44,43 @@ export class LibraryPage {
     }
   }
 
+  showActionSheet(book) {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Actions for ' + book.title,
+      buttons: [
+        {
+          text: 'Remove',
+          role: 'destructive',
+          handler: () => {
+            this.removeBook(book);
+          }
+        },{
+          text: 'Go to link',
+          handler: () => {
+            this.goToLink(book)
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
   removeBook(book) {
     this.afStore.collection('books').doc(book.uid).delete()
       .then(
         () => this.getUserBooks(this.user)
       )
+  }
+
+  goToLink(book) {
+    const browser = this.iab.create(book.storeLink)
+    browser.show();
   }
 
   ionViewDidLoad() {

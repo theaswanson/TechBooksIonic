@@ -9,7 +9,7 @@
 <ion-content padding>
   <div class="flex-container">
     <ion-card class="resultCards" *ngFor="let book of books">
-      <ion-badge item-end on-tap="removeBook(book)">X</ion-badge>
+      <ion-icon name="more" on-tap="showActionSheet(book)"></ion-icon>
       <ion-row>
         <ion-item text-wrap>
           <h3>

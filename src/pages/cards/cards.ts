@@ -86,6 +86,7 @@ export class CardsPage {
       position: 'top'
     });
 
+    console.log(book)
     toast.present();
   }
 
@@ -104,7 +105,8 @@ export class CardsPage {
       userId: this.user.uid,
       title: book.volumeInfo.title,
       description: book.volumeInfo.description,
-      thumbnail: book.volumeInfo.imageLinks.smallThumbnail
+      thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
+      storeLink: book.accessInfo.webReaderLink
     }).then(ref => {
       ref.update({uid: ref.id})
       const toast = this.toastCtrl.create({
