@@ -8,25 +8,46 @@
 
 <ion-content padding>
   <div class="flex-container">
-    <ion-card class="resultCards" *ngFor="let book of books">
-      <ion-icon name="more" on-tap="showActionSheet(book)"></ion-icon>
-      <ion-row>
-        <ion-item text-wrap>
-          <h3>
-            <strong>{{ book.title }}</strong>
-          </h3>
-        </ion-item>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <img src={{book.thumbnail}} alt="{{book.title}}_thumbnail">
-        </ion-col>
-        <ion-col>
-        <h2>
-          {{ book.description }}...
-        </h2>
-        </ion-col>
-      </ion-row>
+    <ion-card class="resultCards" *ngFor="let book of books" on-tap="showActionSheet(book)">
+      <ion-grid>
+
+         <ion-row>
+           <ion-col col-10>
+             <h1>
+               <strong>{{ book.title }}</strong>
+             </h1>
+           </ion-col>
+           <ion-col col-2>
+             <ion-icon name="more"></ion-icon>
+           </ion-col>
+         </ion-row>
+
+         <ion-row>
+            <ion-col class="cardImage" col-4>
+               <img src={{book.thumbnail}} alt="{{book.title}}_thumbnail">
+            </ion-col>
+            <ion-col col-8>
+               <ion-row>
+                  <ion-item class="cardAuthor" text-wrap>
+                     <h2>
+                        <b>Authors:</b> <i>{{ book.author }}</i>
+                     </h2>
+                  </ion-item>
+                  <ion-item class="cardCategory" text-wrap>
+                     <h2 style="text-align: left;">
+                        <b>Genre:</b> {{ book.category }}
+                     </h2>
+                  </ion-item>
+                  <ion-item class="cardDescription" text-wrap>
+                     <h2 style="text-align: left;"><b>Description:</b></h2>
+                     <h2 style="text-align: left;">
+                        {{ book.description }}
+                     </h2>
+                  </ion-item>
+               </ion-row>
+            </ion-col>
+         </ion-row>
+      </ion-grid>
     </ion-card>
   </div>
 </ion-content>
