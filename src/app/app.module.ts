@@ -20,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { Keyboard } from '@ionic-native/keyboard';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { GoogleLoginComponent } from  '../components/google-login/google-login';
 import { firebaseConfig } from '../config'
 
@@ -46,6 +47,7 @@ import { BookLogicProvider } from '../providers/book-logic/book-logic'; // We'll
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig.fire),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     SwipeCardsModule
   ],
   bootstrap: [IonicApp],
