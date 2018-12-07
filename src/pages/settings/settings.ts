@@ -26,6 +26,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
+    console.log(this.user)
   }
 
   signOut(): Promise<void> {

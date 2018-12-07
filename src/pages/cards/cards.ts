@@ -123,7 +123,7 @@ export class CardsPage {
     }).then(ref => {
       ref.update({uid: ref.id})
       const toast = this.toastCtrl.create({
-        message: "you liked " + book.volumeInfo.title,
+        message: book.volumeInfo.title + " added to your library",
         duration: 2000,
         position: 'top'
       });

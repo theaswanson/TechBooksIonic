@@ -8,17 +8,19 @@
 
 <ion-content padding>
   <div class="flex-container">
-    <ion-card class="resultCards" *ngFor="let book of books" on-tap="showActionSheet(book)">
+    <ion-card class="resultCards" *ngFor="let book of books">
       <ion-grid>
 
          <ion-row>
-           <ion-col col-10>
+           <ion-col col-2>
+           </ion-col>
+           <ion-col col-8>
              <h1>
                <strong>{{ book.title }}</strong>
              </h1>
            </ion-col>
            <ion-col col-2>
-             <ion-icon name="more"></ion-icon>
+             <ion-icon on-tap="showActionSheet(book)" name="more"></ion-icon>
            </ion-col>
          </ion-row>
 

@@ -20,6 +20,7 @@ import { firebaseConfig } from '../../config'
 export class GoogleLoginComponent {
 
   user: any;
+  loading: any;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -28,10 +29,12 @@ export class GoogleLoginComponent {
     private platform: Platform,
     public navCtrl: NavController
   ) {
-    this.user = this.afAuth.authState;
+    this.loading = false;
+    this.user = this.afAuth.authState
   }
 
   googleLogin() {
+    this.loading = true
     if (this.platform.is("cordova")) {
       this.nativeGoogleLogin();
     } else {
@@ -49,7 +52,9 @@ export class GoogleLoginComponent {
       return await this.afAuth.auth.signInWithCredential(
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
       ).then(
-        () => this.navCtrl.push(TabsPage)
+        () => {
+          this.navCtrl.push(TabsPage)
+        }
       )
     } catch(err) {
       console.log(err)
