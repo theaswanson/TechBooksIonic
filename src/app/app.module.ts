@@ -21,6 +21,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GoogleLoginComponent } from  '../components/google-login/google-login';
 import { firebaseConfig } from '../config'
 
@@ -68,6 +69,7 @@ import { BookLogicProvider } from '../providers/book-logic/book-logic'; // We'll
     GooglePlus,
     SplashScreen,
     Keyboard,
+    InAppBrowser,
     AngularFireAuthModule,
     BookLogicProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

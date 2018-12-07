@@ -86,6 +86,7 @@ export class CardsPage {
       position: 'top'
     });
 
+    console.log(book)
     toast.present();
   }
 
@@ -100,15 +101,29 @@ export class CardsPage {
   }
 
   likeEvent(book) {
-    this.afStore.collection('books').add({
+    const books = this.afStore.collection(`books`, ref => ref.where('bookId', '==', book.id).where('userId', '==', this.user.uid)).get()
+      .subscribe((docSnapshot) => {
+        if (docSnapshot.docs.length > 0) {
+        } else {
+          this.addBookToUserLibrary(book, this.afStore.collection('books'))
+        }
+      })
+  }
+
+  addBookToUserLibrary(book, connection) {
+    connection.add({
       userId: this.user.uid,
+      bookId: book.id,
       title: book.volumeInfo.title,
       description: book.volumeInfo.description,
-      thumbnail: book.volumeInfo.imageLinks.smallThumbnail
+      thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
+      storeLink: book.accessInfo.webReaderLink,
+      author: book.volumeInfo.authors[0],
+      category: book.volumeInfo.categories[0],
     }).then(ref => {
       ref.update({uid: ref.id})
       const toast = this.toastCtrl.create({
-        message: "you liked " + book.volumeInfo.title,
+        message: book.volumeInfo.title + " added to your library",
         duration: 2000,
         position: 'top'
       });

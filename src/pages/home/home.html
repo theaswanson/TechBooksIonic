@@ -16,17 +16,26 @@
   <div id="cards">
      <ion-card class="resultCards" *ngFor="let book of bookLogic.books" (click)="openCards(book.id)">
        <ion-grid>
+
+          <ion-row>
+             <ion-col col-2>
+             </ion-col>
+             <ion-col col-8>
+               <h1>
+                 <strong>{{ book.volumeInfo.title }}</strong>
+               </h1>
+             </ion-col>
+             <ion-col col-2>
+               <ion-icon on-tap="showActionSheet(book)" name="more"></ion-icon>
+             </ion-col>
+          </ion-row>
+
           <ion-row>
              <ion-col class="cardImage" col-4>
                 <img src={{book.volumeInfo.imageLinks.smallThumbnail}} alt="{{book.volumeInfo.title}}_thumbnail">
              </ion-col>
              <ion-col col-8>
                 <ion-row>
-                   <ion-item class="cardTitle" text-wrap>
-                      <h1>
-                         <strong>{{ book.volumeInfo.title }}</strong>
-                      </h1>
-                   </ion-item>
                    <ion-item class="cardAuthor" text-wrap>
                       <h2>
                          <b>Authors:</b> <i>{{ book.volumeInfo.authors.join(', ') }}</i>

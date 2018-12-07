@@ -53,7 +53,7 @@ export class BookLogicProvider {
             this.results = data;
 
             for (var item in this.results.items) {
-              if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+              if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')
               && this.results.items[item].volumeInfo.hasOwnProperty('description')
               && this.results.items[item].volumeInfo.hasOwnProperty('categories')) {
                 this.books.push(this.results.items[item]);
@@ -64,7 +64,7 @@ export class BookLogicProvider {
             }
 
             this.loading = false;
-            
+
             err => {
               console.log(err);
               alert("Error in searchFunction.");
@@ -81,7 +81,7 @@ export class BookLogicProvider {
           this.results = data;
           this.books = [];
           for (var item in this.results.items) {
-            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks') 
+            if (this.results.items[item].volumeInfo.hasOwnProperty('imageLinks')
             && this.results.items[item].volumeInfo.hasOwnProperty('description')
             && this.results.items[item].volumeInfo.hasOwnProperty('categories')
             && this.results.items[item].hasOwnProperty('searchInfo')) {
